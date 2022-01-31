@@ -2,9 +2,16 @@
   {%- case block.type -%}
     {%- when 'announcement-text' -%}
       <section class="ammouncement-bar">
-        <p class="ammouncement-first-text">{{ block.settings.first_text }}</p>
-        <a class="announcement-link" href="{{ block.settings.link_announcement }}">
-          <p class="ammouncement-second-text">{{ block.settings.second_text }}</p>
+        <p class="ammouncement-first-text">
+          {{ block.settings.first_text }}
+        </p>
+        <a
+          class="announcement-link"
+          target="_blank"
+          href="{{ block.settings.link_announcement }}">
+          <p class="ammouncement-second-text">
+            {{ block.settings.second_text }}
+          </p>
         </a>
       </section>
   {%- endcase -%}
