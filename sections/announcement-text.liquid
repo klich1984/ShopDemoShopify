@@ -1,0 +1,50 @@
+{% for block in section.blocks %}
+  {%- case block.type -%}
+    {%- when 'announcement-text' -%}
+      <section class="ammouncement-bar">
+        <p class="ammouncement-first-text">{{ block.settings.first_text }}</p>
+        <a class="announcement-link" href="{{ block.settings.link_announcement }}">
+          <p class="ammouncement-second-text">{{ block.settings.second_text }}</p>
+        </a>
+      </section>
+  {%- endcase -%}
+{% endfor %}
+
+{% schema %}
+
+{
+  "name": "Anuncio de Texto",
+  "max_blocks": 1,
+  "blocks": [
+    {
+      "type": "announcement-text",
+      "name": "Seccion anuncio texto",
+      "settings": [
+        {
+          "type": "text",
+          "id": "first_text",
+          "default": "ENVÍO Y DEVOLUCIONES ",
+          "label": "Texto de anuncio"
+        }, {
+          "type": "text",
+          "id": "second_text",
+          "default": "DETALLES",
+          "label": "Texto dos anuncio"
+        }, {
+          "type": "url",
+          "id": "link_announcement",
+          "label": "URL Anuncio"
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "announcement-text"
+      }
+    ]
+  }
+}
+
+{% endschema %}

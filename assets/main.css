@@ -1,15 +1,137 @@
-body {
-	background-color: red;
+:root {
+	/* Colors: */
+	--unnamed-color-2e292a: #2e292a;
+	--unnamed-color-ffffff: #ffffff;
+	--unnamed-color-494cd9: #494cd9;
+	--unnamed-color-eceef0: #eceef0;
+	--unnamed-color-231f20: #231f20;
+	--unnamed-color-9b9999: #9b9999;
+	--unnamed-color-ff4070: #ff4070;
+	--unnamed-color-1d1a1b: #1d1a1b;
+
+	/* Font/text values */
+	--unnamed-font-family-open-sans: Open Sans;
+	--unnamed-font-family-poppins: Poppins;
+	--unnamed-font-style-normal: normal;
+	--unnamed-font-weight-100: 100;
+	--unnamed-font-weight-200: 200;
+	--unnamed-font-weight-300: 300;
+	--unnamed-font-weight-400: 400;
+	--unnamed-font-weight-500: 500;
+	--unnamed-font-weight-600: 600;
+	--unnamed-font-weight-700: 700;
+	--unnamed-font-weight-normal: normal;
+	--unnamed-font-weight-medium: medium;
+	--unnamed-font-size-12: 12px;
+	--unnamed-font-size-14: 14px;
+	--unnamed-font-size-16: 16px;
+	--unnamed-font-size-20: 20px;
+	--unnamed-font-size-28: 28px;
+	--unnamed-font-size-32: 32px;
+	--unnamed-font-size-36: 36px;
+	--unnamed-font-size-54: 54px;
+	--unnamed-character-spacing-0: 0px;
+	--unnamed-line-spacing-16: 16px;
+	--unnamed-line-spacing-20: 20px;
+	--unnamed-line-spacing-24: 24px;
+	--unnamed-line-spacing-28: 28px;
+	--unnamed-line-spacing-36: 36px;
+	--unnamed-line-spacing-42: 42px;
+	--unnamed-line-spacing-62: 62px;
+	--unnamed-text-transform-uppercase: uppercase;
+	--unnamed-decoration-underline: underline;
+	--unnamed-decoration-strikethrough: line-through;
+
+	/* Text-fluid @link https://utopia.fyi/type/calculator?c=320,14,1.2,1366,14,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l */
+
+	--step--2: clamp(0.61rem, 0.47rem + 0.69vw, 0.96rem);
+	--step--1: clamp(0.73rem, 0.55rem + 0.92vw, 1.2rem);
+	--step-0: clamp(0.88rem, 0.63rem + 1.22vw, 1.5rem);
+	--step-1: clamp(1.05rem, 0.73rem + 1.61vw, 1.88rem);
+	--step-2: clamp(1.26rem, 0.84rem + 2.11vw, 2.34rem);
+	--step-3: clamp(1.51rem, 0.96rem + 2.77vw, 2.93rem);
+	--step-4: clamp(1.81rem, 1.09rem + 3.6vw, 3.66rem);
+	--step-5: clamp(2.18rem, 1.24rem + 4.68vw, 4.58rem);
 }
 
-a {
-	background-color: #e2e2e2;
+/* Normalice */
+html {
+	box-sizing: border-box;
 }
 
-.link-uno {
-	color: palegreen;
+*,
+*::after,
+*::before {
+	box-sizing: inherit;
 }
 
-.link-dos {
-	color: lightcoral;
+body,
+p {
+	margin: 0;
+}
+
+/*  class text-fluid */
+.step--2 {
+font-size: var(--step--2);
+}
+
+.step--1 {
+	font-size: var(--step--1);
+}
+
+.step-0 {
+	font-size: var(--step-0);
+}
+
+.step-1 {
+	font-size: var(--step-1);
+}
+
+.step-2 {
+	font-size: var(--step-2);
+}
+
+.step-3 {
+	font-size: var(--step-3);
+}
+
+.step-4 {
+	font-size: var(--step-4);
+}
+
+.step-5 {
+	font-size: var(--step-5);
+}
+
+/* section-announcement-bar */
+.ammouncement-bar {
+	background-color: var(--unnamed-color-494cd9);
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	height: 32px;
+	text-align: left;
+	font: var(--unnamed-font-style-normal) normal
+		var(--unnamed-font-weight-300) var(--unnamed-font-size-14) /
+		var(--unnamed-line-spacing-24) var(--unnamed-font-family-poppins);
+	letter-spacing: 0px;
+	color: #ffffff;
+	opacity: 1;
+}
+
+.ammouncement-second-text {
+	margin-left: 1ch;
+	text-decoration: var(--unnamed-decoration-underline);
+	font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-500) var(--unnamed-font-size-14)/var(--unnamed-line-spacing-24) var(--unnamed-font-family-poppins);
+}
+
+.announcement-link {
+	color: var(--unnamed-color-ffffff);
+}
+
+@media only screen and (min-width: 750px) {
+	.ammouncement-bar {
+		height: 36px;
+	}
 }
