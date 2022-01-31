@@ -1,0 +1,96 @@
+<div class="header-container">
+	<div class="header-container-left">
+		<!-- Menu burger movil -->
+		<div class="header-menu-burger">
+			{% render 'icon-burger' %}
+		</div>
+		<!-- Store NAME/LOGO -->
+		<div class="header-logo">
+			{% if section.settings.logo == blank %}
+				{{ shop.name }}
+			{% else %}
+			{% assign image_size = section.settings.logo_width | append: 'x' %}
+			<img
+				src="{{ section.settings.logo | img_url: image_size }}"
+				alt="{{ section.settings.logo.alt }}">
+			{% endif %}
+		</div>
+		<div class="header-desktop-menu-center">
+			<!-- Menu descktop -->
+			{% for link in linklists.main-menu.links %}
+				{% assign child_list_handle = link.title | handleize %}
+				{% if linklists[child_list_handle].links != blank %}
+					<a class="link-uno" href="{{ link.url }}">{{ link.title }}</a>
+						[{% for childlink in linklists[child_list_handle].links %}
+							<a class="link-dos" href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+						{% endfor %}]
+				{% else %}
+					<a class="link-dos" href="{{ link.url }}">{{ link.title }}</a>
+				{% endif %}
+			{% endfor %}
+		</div>
+		<div class="search-desktop-menu-right">
+			<button type="button" class="button-search">
+				Buscar
+				{% render 'icon-search' %}
+		</button>
+		</div>
+	</div>
+	<div class="header-container-right-mobile">
+		<!-- Search Butoon -->
+		<div class="header-search">
+			{% render 'icon-search' %}
+		</div>
+		<!-- Varius Icons and car-shop -->
+		<div class="header-shop-cart">
+			{% render 'icon-map-marker' %}
+			{% render 'icon-shopping-cart' %}
+		</div>
+	</div>
+</div>
+
+{% schema %}
+{
+	"name": "section-header",
+	"settings": [
+		{
+			"type": "image_picker",
+			"id": "logo",
+			"label": "Inserta logo"
+		},
+		{
+			"type": "range",
+			"id": "logo_width",
+			"min": 50,
+			"max": 250,
+			"step": 2,
+			"default": 102,
+			"label": "Tamaño de la imagen"
+		}
+	]
+}
+{% endschema %}
+
+<!-- {% for link in linklists.main-menu.links %}
+    {% assign child_list_handle = link.title | handleize %}
+    {% if linklists[child_list_handle].links != blank %}
+      <a class="link-uno" href="{{ link.url }}">{{ link.title }}</a>
+      [{% for childlink in linklists[child_list_handle].links %}
+        <a class="link-dos" href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+      {% endfor %}]
+    {% else %}
+      <a class="link-dos" href="{{ link.url }}">{{ link.title }}</a>
+    {% endif %}
+  {% endfor %}
+
+  <a href="/cart">cart</a>
+
+  {% if shop.customer_accounts_enabled %}
+    {% if customer %}
+      <a href="/account">account</a>
+      {{ 'log out'  | customer_logout_link }}
+    {% else %}
+      {{ 'log in ' | customer_login_link }}
+      {{ 'register' | customer_register_link }}
+    {% endif %}
+  {% endif %} -->
