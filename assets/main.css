@@ -160,8 +160,13 @@ p {
 	margin-left: 24px;
 }
 
-.header-menu-burger {
+svg {
 	fill: var(--unnamed-color-1d1a1b);
+	cursor: pointer;
+}
+
+svg:hover {
+	transform: scale(1.07);
 }
 
 .header-container-right-mobile {
@@ -256,6 +261,7 @@ p {
 	.button-search {
 		width: 13vw;
     height: 48px;
+		padding: 0 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;

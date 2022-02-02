@@ -1,4 +1,4 @@
-<div class="header-container">
+<header class="header-container">
 	<div class="header-container-left">
 		<div class="header-container-content-left">
 			<!-- Menu burger movil -->
@@ -16,20 +16,25 @@
 					alt="{{ section.settings.logo.alt }}">
 				{% endif %}
 			</div>
-			<div class="header-desktop-menu-center">
+			<nav class="header-desktop-menu-center">
+				{% if section.settings.menu.links == blank %}
+					{% assign main_menu_linklist = linklists[section.settings.menu].links %}
+				{% else %}
+					{% assign main_menu_linklist = section.settings.menu.links %}
+				{% endif %}
 				<!-- Menu descktop -->
 				{% for link in linklists.main-menu.links %}
 					{% assign child_list_handle = link.title | handleize %}
 					{% if linklists[child_list_handle].links != blank %}
-						<a class="link-uno" href="{{ link.url }}">{{ link.title }}</a>
+						<a href="{{ link.url }}">{{ link.title }}</a>
 							[{% for childlink in linklists[child_list_handle].links %}
-								<a class="link-dos" href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+								<a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
 							{% endfor %}]
 					{% else %}
-						<a class="link-dos" href="{{ link.url }}">{{ link.title }}</a>
+						<a href="{{ link.url }}">{{ link.title }}</a>
 					{% endif %}
 				{% endfor %}
-			</div>
+			</nav>
 		</div>
 		<div class="header-search-desktop">
 			<button type="button" class="button-search">
@@ -63,7 +68,7 @@
 		</div>
 
 	</div>
-</div>
+</header>
 
 {% schema %}
 {
@@ -72,7 +77,7 @@
 		{
 			"type": "image_picker",
 			"id": "logo",
-			"label": "Inserta logo"
+			"label": "Inserta "
 		},
 		{
 			"type": "range",
@@ -82,31 +87,13 @@
 			"step": 2,
 			"default": 102,
 			"label": "Tamaño de la imagen"
+		},
+		{
+			"type": "link_list",
+			"id": "menu",
+			"label": "Menu de Navegacion",
+			"default": "main-menu"
 		}
 	]
 }
 {% endschema %}
-
-<!-- {% for link in linklists.main-menu.links %}
-    {% assign child_list_handle = link.title | handleize %}
-    {% if linklists[child_list_handle].links != blank %}
-      <a class="link-uno" href="{{ link.url }}">{{ link.title }}</a>
-      [{% for childlink in linklists[child_list_handle].links %}
-        <a class="link-dos" href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
-      {% endfor %}]
-    {% else %}
-      <a class="link-dos" href="{{ link.url }}">{{ link.title }}</a>
-    {% endif %}
-  {% endfor %}
-
-  <a href="/cart">cart</a>
-
-  {% if shop.customer_accounts_enabled %}
-    {% if customer %}
-      <a href="/account">account</a>
-      {{ 'log out'  | customer_logout_link }}
-    {% else %}
-      {{ 'log in ' | customer_login_link }}
-      {{ 'register' | customer_register_link }}
-    {% endif %}
-  {% endif %} -->
