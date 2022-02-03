@@ -10,10 +10,11 @@
 				{% if section.settings.logo == blank %}
 					{{ shop.name }}
 				{% else %}
-				{% assign image_size = section.settings.logo_width | append: 'x' %}
+				{% assign image_size = section.settings.logo_width | append: 'px' %}
 				<img
 					src="{{ section.settings.logo | img_url: image_size }}"
-					alt="{{ section.settings.logo.alt }}">
+					alt="{{ section.settings.logo.alt }}"
+					>
 				{% endif %}
 			</div>
 			<nav class="header-desktop-menu-center">
@@ -70,6 +71,80 @@
 	</div>
 </header>
 
+<div class="modal-movil">
+	<section class="modal-movil-top">
+		<div class="logo">
+			{% render 'icon-logo-blue' %}
+		</div>
+		<button class="btn-close">
+			{% render 'icon-close' %}
+		</button>
+	</section>
+	<section class="modal-movil-medium">
+
+		<nav class="modal-nav-list">
+			<ul class="menu">
+
+				{% for link in main_menu_linklist %}
+					<li class="menu-link-parent">
+						<a href="{{ link.url }}"
+							class="link-parent">
+							{{ link.title }}
+							{% if link.links.size > 0 %}
+								<span>
+									{% render 'icon-angle-right' %}
+								</span>
+							{% endif %}
+						</a>
+
+						{% if link.links.size > 0 %}
+							<ul class="menu dropdown-child">
+								{% for child_link in link.links %}
+									<li class="menu-link">
+										<a href="{{ child_link.url }}">{{ child_link.title }}</a>
+		
+										{% if child_link.links.size > 0 %}
+											<ul class="menu dropdown-grandchild">
+												{% for grandchild_link in child_link.links %}
+													<li class="menu-link">
+														<a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
+													</li>
+												{% endfor %}
+											</ul>
+										{% endif %}
+									</li>
+								{% endfor %}
+							</ul>
+						{% endif %}
+					</li>
+				{% endfor %}
+			</ul>
+		</nav>
+	</section>
+	<section class="modal-movil-bottom">
+		<div class="item-modal-botton">
+			{% render 'icon-user' %}
+			<p>Mi cuenta</p>
+		</div>
+		<div class="item-modal-botton">
+			{% render 'icon-heart' %}
+			<p>Favoritos</p>
+		</div>
+		<div class="item-modal-botton">
+			{% render 'icon-help' %}
+			<p>Ayuda</p>
+		</div>
+		<div class="item-modal-botton">
+			{% render 'icon-map-marker' %}
+			<p>Localizar tu tienda</p>
+		</div>
+	</section>
+</div>
+
+<div class="modal-two-nivel">
+	
+</div>
+
 {% schema %}
 {
 	"name": "section-header",
@@ -77,7 +152,7 @@
 		{
 			"type": "image_picker",
 			"id": "logo",
-			"label": "Inserta "
+			"label": "Inserta logo"
 		},
 		{
 			"type": "range",
