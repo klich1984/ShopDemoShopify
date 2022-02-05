@@ -1,174 +1,242 @@
 <header class="header-container">
-	<div class="header-container-left">
-		<div class="header-container-content-left">
-			<!-- Menu burger movil -->
-			<div class="header-menu-burger">
-				{% render 'icon-burger' %}
-			</div>
-			<!-- Store NAME/LOGO -->
-			<div class="header-logo">
-				{% if section.settings.logo == blank %}
-					{{ shop.name }}
-				{% else %}
-				{% assign image_size = section.settings.logo_width | append: 'px' %}
-				<img
-					src="{{ section.settings.logo | img_url: image_size }}"
-					alt="{{ section.settings.logo.alt }}"
-					>
-				{% endif %}
-			</div>
-			<nav class="header-desktop-menu-center">
-				{% if section.settings.menu.links == blank %}
-					{% assign main_menu_linklist = linklists[section.settings.menu].links %}
-				{% else %}
-					{% assign main_menu_linklist = section.settings.menu.links %}
-				{% endif %}
-				<!-- Menu descktop -->
-				{% for link in linklists.main-menu.links %}
-					{% assign child_list_handle = link.title | handleize %}
-					{% if linklists[child_list_handle].links != blank %}
-						<a href="{{ link.url }}">{{ link.title }}</a>
-							[{% for childlink in linklists[child_list_handle].links %}
-								<a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
-							{% endfor %}]
-					{% else %}
-						<a href="{{ link.url }}">{{ link.title }}</a>
-					{% endif %}
-				{% endfor %}
-			</nav>
-		</div>
-		<div class="header-search-desktop">
-			<button type="button" class="button-search">
-				<p>Buscar</p>
-				<span>
-					{% render 'icon-search' %}
-				</span>
-			</button>
-		</div>
-	</div>
-	<div class="header-container-right">
-		<!-- Menu mobile -->
-		<div class="header-container-right-mobile">
-					<!-- Search Butoon -->
-			<div class="header-search">
-				{% render 'icon-search' %}
-			</div>
-			<!-- Varius Icons and car-shop -->
-			<div class="header-shop-cart">
-				{% render 'icon-map-marker' %}
-				{% render 'icon-shopping-cart' %}
-			</div>
-		</div>
-		<!-- Menu descktop -->
-		<div class="header-container-right-desktop">
-			{% render 'icon-map-marker' %} Localizar tu tienda
-			{% render 'icon-help' %} Ayuda
-			{% render 'icon-user' %} Mi cuenta
-			{% render 'icon-heart' %} Favoritos
-			{% render 'icon-shopping-cart' %} Carrito(0)
-		</div>
-
-	</div>
+  <div class="header-container-left">
+    <div class="header-container-content-left">
+      <!-- Menu burger movil -->
+      <div class="header-menu-burger">{% render 'icon-burger' %}</div>
+      <!-- Store NAME/LOGO -->
+      <div class="header-logo">
+        {% if section.settings.logo == blank %}
+          {{ shop.name }}
+        {% else %}
+          {% assign image_size = section.settings.logo_width | append:
+				'px' %}
+          <img src="{{ section.settings.logo | img_url: image_size }}" alt="{{ section.settings.logo.alt }}"/>
+        {% endif %}
+      </div>
+      <nav class="header-desktop-menu-center">
+        {% if section.settings.menu.links == blank %}
+          {% assign
+				main_menu_linklist = linklists[section.settings.menu].links %}
+        {% else
+				%}
+          {% assign main_menu_linklist = section.settings.menu.links %}
+        {%
+				endif %}
+        <!-- Menu descktop -->
+        {% for link in linklists.main-menu.links %}
+          {% assign child_list_handle
+				= link.title | handleize %}
+          {% if linklists[child_list_handle].links !=
+				blank %}
+            <a href="{{ link.url }}">{{ link.title }}</a>
+            [
+            {% for childlink in linklists[child_list_handle].links %}
+              <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+            {% endfor %}]
+          {% else %}
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          {% endif %}
+        {% endfor %}
+      </nav>
+    </div>
+    <div class="header-search-desktop">
+      <button class="button-search" type="button">
+        <p>Buscar</p>
+        <span>
+          {% render 'icon-search' %}
+        </span>
+      </button>
+    </div>
+  </div>
+  <div class="header-container-right">
+    <!-- Menu mobile -->
+    <div class="header-container-right-mobile">
+      <!-- Search Butoon -->
+      <div class="header-search">{% render 'icon-search' %}</div>
+      <!-- Varius Icons and car-shop -->
+      <div class="header-shop-cart">
+        {% render 'icon-map-marker' %}
+        {% render 'icon-shopping-cart' %}
+      </div>
+    </div>
+    <!-- Menu top descktop -->
+    <div class="header-container-right-desktop">
+      {% render 'icon-map-marker' %}
+      Localizar tu tienda
+      {% render 'icon-help'
+			%}
+      Ayuda
+      {% render 'icon-user' %}
+      Mi cuenta
+      {% render 'icon-heart' %}
+      Favoritos
+      {% render 'icon-shopping-cart' %}
+      Carrito(0)
+    </div>
+  </div>
 </header>
 
 <div class="modal-movil">
-	<section class="modal-movil-top">
-		<div class="logo">
-			{% render 'icon-logo-blue' %}
-		</div>
-		<button class="btn-close">
-			{% render 'icon-close' %}
-		</button>
-	</section>
-	<section class="modal-movil-medium">
-
-		<nav class="modal-nav-list">
-			<ul class="menu">
-
-				{% for link in main_menu_linklist %}
+  <section class="modal-movil-top">
+    <div class="logo">{% render 'icon-logo-blue' %}</div>
+    <button class="btn-close">{% render 'icon-close' %}</button>
+  </section>
+	<!-- medium menu nav -->
+  <section class="modal-movil-medium">
+    <nav class="menu">
+			<ul class="menu-drawer__menu list-menu" role="list">
+				{%- for link in section.settings.menu.links -%}
 					<li class="menu-link-parent">
-						<a href="{{ link.url }}"
-							class="link-parent">
-							{{ link.title }}
-							{% if link.links.size > 0 %}
-								<span>
-									{% render 'icon-angle-right' %}
-								</span>
-							{% endif %}
-						</a>
-
-						{% if link.links.size > 0 %}
-							<ul class="menu dropdown-child">
-								{% for child_link in link.links %}
-									<li class="menu-link">
-										<a href="{{ child_link.url }}">{{ child_link.title }}</a>
-		
-										{% if child_link.links.size > 0 %}
-											<ul class="menu dropdown-grandchild">
-												{% for grandchild_link in child_link.links %}
-													<li class="menu-link">
-														<a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
-													</li>
-												{% endfor %}
-											</ul>
-										{% endif %}
-									</li>
-								{% endfor %}
-							</ul>
-						{% endif %}
+						{%- if link.links != blank -%}
+						<details
+							class="submenu-parent"
+							menu="item-{{forloop.index}}"
+							id="Details-menu-drawer-menu-item-{{ forloop.index }}">
+							<summary class="summary-link">
+								{{ link.title | escape }}
+								{% render 'icon-angle-right' %}
+							</summary>
+						</details>
+						<div class="submenu">
+							<div class="top-submenu">
+								<div class="top-submenu-left">
+									{% render 'icon-arrow-left' %}
+									{{ link.title }}
+								</div>
+								<div class="top-submenu-right">
+									<button class="btn-close-2">
+										{% render 'icon-close' %}
+									</button>
+								</div>
+							</div>
+							<div class="dropdown inline-block relative w-full">
+								<button
+									aria-expanded="true"
+									class="
+										bg-gray-300
+										text-gray-700
+										font-semibold
+										py-2
+										px-4
+										rounded
+										inline-flex
+										justify-between
+										items-center
+										w-full">
+									<span class="mr-1">
+										{{ link.title | escape }}
+									</span>
+									{% render 'icon-angle-down' %}
+								</button>
+								<ul class="dropdown-menu relative hidden text-gray-700 pt-1" role="list" tabindex="-1">
+									{%- for childlink in link.links -%}
+										<li class="">
+											{%- if childlink.links == blank -%}
+												<a href="{{ childlink.url }}" class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
+													{{ childlink.title | escape }}
+												</a>
+											{%- else -%}
+												<details id="Details-menu-drawer-submenu-{{ forloop.index }}">
+													<summary class="menu-drawer__menu-item link link--text list-menu__item focus-inset">
+														{{ childlink.title | escape }}
+													</summary>
+												</details>
+												<div class="dropdown2 inline-block relative w-full" id="childlink-{{ childlink.title | escape }}">
+													<button
+														aria-expanded="true"
+														class="
+															bg-gray-300
+															text-gray-700
+															font-semibold
+															py-2
+															px-4
+															rounded
+															inline-flex
+															justify-between
+															items-center
+															w-full">
+														<span class="mr-1">
+															{{ childlink.title | escape }}
+														</span>
+														{% render 'icon-angle-down' %}
+													</button>
+													<ul class="dropdown-menu2 relative hidden text-gray-700 pt-1" role="list" tabindex="-1">
+														{%- for grandchildlink in childlink.links -%}
+															<li class="">
+																<a href="{{ grandchildlink.url }}" class="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">
+																	{{ grandchildlink.title | escape }}
+																</a>
+															</li>
+														{%- endfor -%}
+													</ul>
+												</div>
+											{%- endif -%}
+										</li>
+									{%- endfor -%}
+								</ul>
+							</div>
+						</div>
+						{%- else -%}
+							<a href="{{ link.url }}" class="rounded-b block whitespace-no-wrap">
+								{{ link.title | escape }}
+							</a>
+						{%- endif -%}
 					</li>
-				{% endfor %}
+				{%- endfor -%}
 			</ul>
-		</nav>
-	</section>
-	<section class="modal-movil-bottom">
-		<div class="item-modal-botton">
-			{% render 'icon-user' %}
-			<p>Mi cuenta</p>
-		</div>
-		<div class="item-modal-botton">
-			{% render 'icon-heart' %}
-			<p>Favoritos</p>
-		</div>
-		<div class="item-modal-botton">
-			{% render 'icon-help' %}
-			<p>Ayuda</p>
-		</div>
-		<div class="item-modal-botton">
-			{% render 'icon-map-marker' %}
-			<p>Localizar tu tienda</p>
-		</div>
-	</section>
+	</nav>
+  </section>
+	<!-- Bottom icons social -->
+  <section class="modal-movil-bottom">
+    <div class="item-modal-botton">
+      {% render 'icon-user' %}
+      <p>Mi cuenta</p>
+    </div>
+    <div class="item-modal-botton">
+      {% render 'icon-heart' %}
+      <p>Favoritos</p>
+    </div>
+    <div class="item-modal-botton">
+      {% render 'icon-help' %}
+      <p>Ayuda</p>
+    </div>
+    <div class="item-modal-botton">
+      {% render 'icon-map-marker' %}
+      <p>Localizar tu tienda</p>
+    </div>
+  </section>
 </div>
 
-<div class="modal-two-nivel">
-	
-</div>
+
+
+
+
+
 
 {% schema %}
+
 {
-	"name": "section-header",
-	"settings": [
-		{
-			"type": "image_picker",
-			"id": "logo",
-			"label": "Inserta logo"
-		},
-		{
-			"type": "range",
-			"id": "logo_width",
-			"min": 50,
-			"max": 250,
-			"step": 2,
-			"default": 102,
-			"label": "Tamaño de la imagen"
-		},
-		{
-			"type": "link_list",
-			"id": "menu",
-			"label": "Menu de Navegacion",
-			"default": "main-menu"
-		}
-	]
+  "name": "section-header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Inserta logo"
+    }, {
+      "type": "range",
+      "id": "logo_width",
+      "min": 50,
+      "max": 250,
+      "step": 2,
+      "default": 102,
+      "label": "Tamaño de la imagen"
+    }, {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu de Navegacion",
+      "default": "main-menu"
+    }
+  ]
 }
+
 {% endschema %}
