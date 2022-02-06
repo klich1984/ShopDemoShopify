@@ -17,13 +17,12 @@
       </div>
 					<!-- Styles MegaMenu -->
 		{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}
-		<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
       <nav class="header-desktop-menu-center">
         <ul class="exo-menu">
+					{%- for link in section.settings.menu.links -%}
 					<li class="mega-drop-down">
 						<a href="#">
-							Mega Menu
+							{{ link.title }}
 						</a>
 						<div class="animated fadeIn mega-menu">
 							<div class="mega-menu-wrap">
@@ -32,15 +31,32 @@
 										<h4 class="row mega-title">
 											Productos Destacados
 										</h4>
-										<ul>
+										<ul class="stander">
 											<li>
 												<a href="#">Lo más nuevo</a>
 												<a href="#">Lso más vendidos</a>
-												<a href="#">Oulet</a>
+												<a class="oulet" href="#">Outlet</a>
 											</li>
 										</ul>
 									</div>
-									<div class="col-md-2">
+									{% if link.links != blank %}
+									{% for childlink in link.links %}
+										<div class="col-md-2">
+											<h4 class="row mega-title">
+												{{ childlink.title | escape }}
+											</h4>
+											<ul class="stander">
+												{% for grandchildlink in childlink.links %}
+													<li>
+														<a href="{{ grandchildlink.url }}">{{ grandchildlink.title | escape }}</a>
+													</li>
+													{% endfor %}
+													<li><a class="view-more btn- btn-sm" href="/products">Ver Todos</a></li>
+											</ul>
+										</div>
+									{% endfor %}
+									{% endif %}
+									<!-- <div class="col-md-2">
 										<h4 class="row mega-title">
 											Calzado
 										</h4>
@@ -54,7 +70,7 @@
 										<h4 class="row mega-title">
 											Ropa
 										</h4>
-										<ul class="description">
+										<ul class="stander">
 											<li>
 												<a href="#">Playeras</a>
 											</li>
@@ -76,7 +92,7 @@
 										<h4 class="row mega-title">
 											Accesorios
 										</h4>
-										<ul class="description">
+										<ul class="stander">
 											<li>
 												<a href="#">Calcas y Tines</a>
 											</li>
@@ -98,7 +114,7 @@
 										<h4 class="row mega-title">
 											Deportes
 										</h4>
-										<ul class="description">
+										<ul class="stander">
 											<li>
 												<a href="#">Running</a>
 											</li>
@@ -115,11 +131,12 @@
 												<a class="view-more btn btn-sm " href="#">Ver todos los deportes</a>
 											</li>
 										</ul>
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div>
 					</li>
+					{%- endfor -%}
 				</ul>
       </nav>
     </div>
