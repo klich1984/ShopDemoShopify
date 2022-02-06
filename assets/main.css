@@ -347,11 +347,11 @@ svg:hover {
 	display: none;
 } */
 .menu-link-parent ul {
-	display: none;
+	/* display: none; */
 }
 
 .menu-link-parent:hover ul {
-	display: none;
+	/* display: none; */
 }
 
 .modal-movil-bottom {
@@ -386,8 +386,22 @@ svg:hover {
 	display: block;
 }
 
+.dropdown-menu li {
+	padding: 1rem 0;
+	text-transform: uppercase;
+	color: var(--unnamed-color-231f20);
+}
+
 .dropdown:hover .dropdown-menu {
 	display: block;
+}
+
+.dropdown2 button {
+	text-transform: uppercase;
+}
+
+.dropdown2 li a {
+	padding-left: 2.5rem;
 }
 
 .dropdown2:hover .dropdown-menu2 {
@@ -402,7 +416,7 @@ svg:hover {
 	left: auto;
 	bottom: 0;
 	width: 100%;
-	background-color: red;
+	background-color: var(--unnamed-color-ffffff);
 	z-index: 100;
 	left: -100vw;
 	transition: left 0.3s ease-out;

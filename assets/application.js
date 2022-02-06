@@ -4,6 +4,7 @@
 		$modalMovil = d.querySelector('.modal-movil'),
 		$btnClose = d.querySelector('.btn-close'),
 		$btnClose2 = d.querySelectorAll('.btn-close-2'),
+		$btnBack = d.querySelectorAll('.close-to-back'),
 		$body = d.querySelector('body'),
 		$ammouncement = d.querySelector('.ammouncement-bar'),
 		$buttonMenuText = d.getElementById('button-menu'),
@@ -46,30 +47,23 @@
 	})
 
 	// CERRAR TODOS LOS SUBMENUS
-	// $btnClose2.addEventListener('click', (e) => {
-	// 	console.log('Si hay');
-		// $modalMovil.classList.toggle('is-active')
-		// $body.classList.remove('overflow')
-		// $ammouncement.classList.remove('is-modal')
-
-	// 	// $submenuAll.forEach(element => {
-	// 	// 	element.style.left = '-100vw'
-	// 	// });
-
-	// })
-
 	$btnClose2.forEach(element => {
 		element.addEventListener('click', e => {
 			let $elementClose = e.target.parentNode.parentNode.parentNode.parentNode
 
-			// $modalMovil.classList.toggle('is-active')
-			// $body.classList.remove('overflow')
-			// $ammouncement.classList.remove('is-modal')
+			$modalMovil.classList.toggle('is-active')
+			$body.classList.remove('overflow')
+			$ammouncement.classList.remove('is-modal')
 
 			$elementClose.style.left = '-100vw'
+		})
+	});
 
-			console.log(e.target);
-			// console.log($elementClose);
+	$btnBack.forEach(element => {
+		element.addEventListener('click', e => {
+			let $elementClose = e.target.parentNode.parentNode.parentNode.parentNode
+
+			$elementClose.style.left = '-100vw'
 		})
 	});
 
@@ -115,7 +109,7 @@
 			let $elementClose = e.target.parentNode
 			$elementClose.style.left = '-320px'
 
-			console.log($elementClose)
+			console.log(elementClose)
 		})
 	})
 })(document)
