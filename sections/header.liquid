@@ -2,7 +2,9 @@
   <div class="header-container-left">
     <div class="header-container-content-left">
       <!-- Menu burger movil -->
-      <div class="header-menu-burger">{% render 'icon-burger' %}</div>
+      <div class="header-menu-burger">
+				{% render 'icon-burger' %}
+			</div>
       <!-- Store NAME/LOGO -->
       <div class="header-logo">
         {% if section.settings.logo == blank %}
@@ -13,30 +15,112 @@
           <img src="{{ section.settings.logo | img_url: image_size }}" alt="{{ section.settings.logo.alt }}"/>
         {% endif %}
       </div>
+					<!-- Styles MegaMenu -->
+		{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
       <nav class="header-desktop-menu-center">
-        {% if section.settings.menu.links == blank %}
-          {% assign
-				main_menu_linklist = linklists[section.settings.menu].links %}
-        {% else
-				%}
-          {% assign main_menu_linklist = section.settings.menu.links %}
-        {%
-				endif %}
-        <!-- Menu descktop -->
-        {% for link in linklists.main-menu.links %}
-          {% assign child_list_handle
-				= link.title | handleize %}
-          {% if linklists[child_list_handle].links !=
-				blank %}
-            <a href="{{ link.url }}">{{ link.title }}</a>
-            [
-            {% for childlink in linklists[child_list_handle].links %}
-              <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
-            {% endfor %}]
-          {% else %}
-            <a href="{{ link.url }}">{{ link.title }}</a>
-          {% endif %}
-        {% endfor %}
+        <ul class="exo-menu">
+					<li class="mega-drop-down">
+						<a href="#">
+							Mega Menu
+						</a>
+						<div class="animated fadeIn mega-menu">
+							<div class="mega-menu-wrap">
+								<div class="row">
+									<div class="col-md-4">
+										<h4 class="row mega-title">
+											Productos Destacados
+										</h4>
+										<ul>
+											<li>
+												<a href="#">Lo más nuevo</a>
+												<a href="#">Lso más vendidos</a>
+												<a href="#">Oulet</a>
+											</li>
+										</ul>
+									</div>
+									<div class="col-md-2">
+										<h4 class="row mega-title">
+											Calzado
+										</h4>
+										<ul class="stander">
+											<li><a href="#">Sneakers</a></li>
+											<li><a href="#">Sandalias</a></li>
+											<li><a class="view-more btn- btn-sm" href="#">Ver Todos</a></li>
+										</ul>
+									</div>
+									<div class="col-md-3">
+										<h4 class="row mega-title">
+											Ropa
+										</h4>
+										<ul class="description">
+											<li>
+												<a href="#">Playeras</a>
+											</li>
+											<li>
+												<a href="#">Sudaderas</a>
+											</li>
+											<li>
+												<a href="#">Shorts</a>
+											</li>
+											<li>
+												<a href="#">Pantalones</a>
+											</li>
+											<li>
+												<a class="view-more btn btn-sm " href="#">Ver toda la ropa</a>
+											</li>
+										</ul>
+									</div>
+									<div class="col-md-3">
+										<h4 class="row mega-title">
+											Accesorios
+										</h4>
+										<ul class="description">
+											<li>
+												<a href="#">Calcas y Tines</a>
+											</li>
+											<li>
+												<a href="#">Backpacks</a>
+											</li>
+											<li>
+												<a href="#">Shorts</a>
+											</li>
+											<li>
+												<a href="#">Cangureras</a>
+											</li>
+											<li>
+												<a class="view-more btn btn-sm " href="#">Ver todos los accesorios</a>
+											</li>
+										</ul>
+									</div>
+									<div class="col-md-3">
+										<h4 class="row mega-title">
+											Deportes
+										</h4>
+										<ul class="description">
+											<li>
+												<a href="#">Running</a>
+											</li>
+											<li>
+												<a href="#">Training</a>
+											</li>
+											<li>
+												<a href="#">Skate</a>
+											</li>
+											<li>
+												<a href="#">Bascketball</a>
+											</li>
+											<li>
+												<a class="view-more btn btn-sm " href="#">Ver todos los deportes</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
       </nav>
     </div>
     <div class="header-search-desktop">
@@ -76,7 +160,7 @@
   </div>
 </header>
 
-<div class="modal-movil">
+<div class="modal-movil md:hidden">
   <section class="modal-movil-top">
     <div class="logo">{% render 'icon-logo-blue' %}</div>
     <button class="btn-close">{% render 'icon-close' %}</button>

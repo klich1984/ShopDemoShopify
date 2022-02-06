@@ -232,7 +232,7 @@ svg:hover {
 
 	.header-desktop-menu-center a {
 		color: var(--unnamed-color-1d1a1b);
-		margin-right: 2rem;
+		/* margin-right: 2rem; */
 		text-decoration: none;
 	}
 
@@ -258,6 +258,7 @@ svg:hover {
 		display: flex;
 		width: 85vw;
 		justify-content: space-between;
+		align-items: center;
 	}
 
 	.button-search {
@@ -568,3 +569,9 @@ summary::-webkit-details-marker {
 		width: 100%;
 	}
 } */
+
+@media (min-width: 768px) {
+  .modal-movil.is-active {
+    display: none;
+  }
+}
