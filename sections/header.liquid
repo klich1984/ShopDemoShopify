@@ -1,0 +1,319 @@
+<header class="header-container">
+  <div class="header-container-left">
+    <div class="header-container-content-left">
+      <!-- Menu burger movil -->
+      <div class="header-menu-burger">
+				{% render 'icon-burger' %}
+			</div>
+      <!-- Store NAME/LOGO -->
+      <div class="header-logo">
+        {% if section.settings.logo == blank %}
+          {{ shop.name }}
+        {% else %}
+          {% assign image_size = section.settings.logo_width | append:
+				'px' %}
+          <img src="{{ section.settings.logo | img_url: image_size }}" alt="{{ section.settings.logo.alt }}"/>
+        {% endif %}
+      </div>
+					<!-- Styles MegaMenu -->
+		{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}
+      <nav class="header-desktop-menu-center">
+        <ul class="exo-menu">
+					{%- for link in section.settings.menu.links -%}
+					<li class="mega-drop-down">
+						<a href="#">
+							{{ link.title }}
+						</a>
+						<div class="animated fadeIn mega-menu">
+							<div class="mega-menu-wrap">
+								<div class="row">
+									<div class="col-md-4">
+										<h4 class="row mega-title">
+											Productos Destacados
+										</h4>
+										<ul class="stander">
+											<li>
+												<a href="#">Lo más nuevo</a>
+												<a href="#">Lso más vendidos</a>
+												<a class="oulet" href="#">Outlet</a>
+											</li>
+										</ul>
+									</div>
+									{% if link.links != blank %}
+									{% for childlink in link.links %}
+										<div class="col-md-2">
+											<h4 class="row mega-title">
+												{{ childlink.title | escape }}
+											</h4>
+											<ul class="stander">
+												{% for grandchildlink in childlink.links %}
+													<li>
+														<a href="{{ grandchildlink.url }}">{{ grandchildlink.title | escape }}</a>
+													</li>
+													{% endfor %}
+													<li><a class="view-more btn- btn-sm" href="/products">Ver Todos</a></li>
+											</ul>
+										</div>
+									{% endfor %}
+									{% endif %}
+									<!-- <div class="col-md-2">
+										<h4 class="row mega-title">
+											Calzado
+										</h4>
+										<ul class="stander">
+											<li><a href="#">Sneakers</a></li>
+											<li><a href="#">Sandalias</a></li>
+											<li><a class="view-more btn- btn-sm" href="#">Ver Todos</a></li>
+										</ul>
+									</div>
+									<div class="col-md-3">
+										<h4 class="row mega-title">
+											Ropa
+										</h4>
+										<ul class="stander">
+											<li>
+												<a href="#">Playeras</a>
+											</li>
+											<li>
+												<a href="#">Sudaderas</a>
+											</li>
+											<li>
+												<a href="#">Shorts</a>
+											</li>
+											<li>
+												<a href="#">Pantalones</a>
+											</li>
+											<li>
+												<a class="view-more btn btn-sm " href="#">Ver toda la ropa</a>
+											</li>
+										</ul>
+									</div>
+									<div class="col-md-3">
+										<h4 class="row mega-title">
+											Accesorios
+										</h4>
+										<ul class="stander">
+											<li>
+												<a href="#">Calcas y Tines</a>
+											</li>
+											<li>
+												<a href="#">Backpacks</a>
+											</li>
+											<li>
+												<a href="#">Shorts</a>
+											</li>
+											<li>
+												<a href="#">Cangureras</a>
+											</li>
+											<li>
+												<a class="view-more btn btn-sm " href="#">Ver todos los accesorios</a>
+											</li>
+										</ul>
+									</div>
+									<div class="col-md-3">
+										<h4 class="row mega-title">
+											Deportes
+										</h4>
+										<ul class="stander">
+											<li>
+												<a href="#">Running</a>
+											</li>
+											<li>
+												<a href="#">Training</a>
+											</li>
+											<li>
+												<a href="#">Skate</a>
+											</li>
+											<li>
+												<a href="#">Bascketball</a>
+											</li>
+											<li>
+												<a class="view-more btn btn-sm " href="#">Ver todos los deportes</a>
+											</li>
+										</ul>
+									</div> -->
+								</div>
+							</div>
+						</div>
+					</li>
+					{%- endfor -%}
+				</ul>
+      </nav>
+    </div>
+    <div class="header-search-desktop">
+      <button class="button-search" type="button">
+        <p>Buscar</p>
+        <span>
+          {% render 'icon-search' %}
+        </span>
+      </button>
+    </div>
+  </div>
+  <div class="header-container-right">
+    <!-- Menu mobile -->
+    <div class="header-container-right-mobile">
+      <!-- Search Butoon -->
+      <div class="header-search">{% render 'icon-search' %}</div>
+      <!-- Varius Icons and car-shop -->
+      <div class="header-shop-cart">
+        {% render 'icon-map-marker' %}
+        {% render 'icon-shopping-cart' %}
+      </div>
+    </div>
+    <!-- Menu top descktop -->
+    <div class="header-container-right-desktop">
+      {% render 'icon-map-marker' %}
+      Localizar tu tienda
+      {% render 'icon-help'
+			%}
+      Ayuda
+      {% render 'icon-user' %}
+      Mi cuenta
+      {% render 'icon-heart' %}
+      Favoritos
+      {% render 'icon-shopping-cart' %}
+      Carrito(0)
+    </div>
+  </div>
+</header>
+
+<div class="modal-movil md:hidden">
+  <section class="modal-movil-top">
+    <div class="logo">{% render 'icon-logo-blue' %}</div>
+    <button class="btn-close">{% render 'icon-close' %}</button>
+  </section>
+	<!-- medium menu nav -->
+  <section class="modal-movil-medium">
+    <nav class="menu">
+			<ul class="menu-drawer__menu list-menu" role="list">
+				{%- for link in section.settings.menu.links -%}
+					<li class="menu-link-parent">
+						{%- if link.links != blank -%}
+						<details
+							class="submenu-parent"
+							menu="item-{{forloop.index}}"
+							id="Details-menu-drawer-menu-item-{{ forloop.index }}">
+							<summary class="summary-link">
+								{{ link.title | escape }}
+								{% render 'icon-angle-right' %}
+							</summary>
+						</details>
+						<div class="submenu">
+							<div class="top-submenu">
+								<div class="top-submenu-left">
+									<button class="close-to-back">
+										{% render 'icon-arrow-left' %}
+									</button>
+									{{ link.title }}
+								</div>
+								<div class="top-submenu-right">
+									<button class="btn-close-2">
+										{% render 'icon-close' %}
+									</button>
+								</div>
+							</div>
+							<div class="dropdown inline-block relative w-full">
+								<ul class="dropdown-menu relative text-gray-700 pt-1" role="list" tabindex="-1">
+									{%- for childlink in link.links -%}
+										<li class="">
+											{%- if childlink.links == blank -%}
+												<a href="{{ childlink.url }}" class="rounded-t hover:bg-gray-400 px-4 block whitespace-no-wrap">
+													{{ childlink.title | escape }}
+												</a>
+											{%- else -%}
+												<div class="dropdown2 inline-block relative w-full" id="childlink-{{ childlink.title | escape }}">
+													<button
+														aria-expanded="true"
+														class="
+															hover:bg-gray-400
+															font-semibold
+															px-4
+															inline-flex
+															justify-between
+															items-center
+															w-full">
+														<span class="mr-1">
+															{{ childlink.title | escape }}
+														</span>
+														{% render 'icon-angle-down' %}
+													</button>
+													<ul class="dropdown-menu2 relative hidden pt-1" role="list" tabindex="-1">
+														{%- for grandchildlink in childlink.links -%}
+															<li class="hover:bg-gray-400">
+																<a href="{{ grandchildlink.url }}" class="hover:bg-gray-400 px-4 block whitespace-no-wrap">
+																	{{ grandchildlink.title | escape }}
+																</a>
+															</li>
+														{%- endfor -%}
+													</ul>
+												</div>
+											{%- endif -%}
+										</li>
+									{%- endfor -%}
+								</ul>
+							</div>
+						</div>
+						{%- else -%}
+							<a href="{{ link.url }}" class="rounded-b block whitespace-no-wrap">
+								{{ link.title | escape }}
+							</a>
+						{%- endif -%}
+					</li>
+				{%- endfor -%}
+			</ul>
+	</nav>
+  </section>
+	<!-- Bottom icons social -->
+  <section class="modal-movil-bottom">
+    <div class="item-modal-botton">
+      {% render 'icon-user' %}
+      <p>Mi cuenta</p>
+    </div>
+    <div class="item-modal-botton">
+      {% render 'icon-heart' %}
+      <p>Favoritos</p>
+    </div>
+    <div class="item-modal-botton">
+      {% render 'icon-help' %}
+      <p>Ayuda</p>
+    </div>
+    <div class="item-modal-botton">
+      {% render 'icon-map-marker' %}
+      <p>Localizar tu tienda</p>
+    </div>
+  </section>
+</div>
+
+
+
+
+
+
+
+{% schema %}
+
+{
+  "name": "section-header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Inserta logo"
+    }, {
+      "type": "range",
+      "id": "logo_width",
+      "min": 50,
+      "max": 250,
+      "step": 2,
+      "default": 102,
+      "label": "Tamaño de la imagen"
+    }, {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu de Navegacion",
+      "default": "main-menu"
+    }
+  ]
+}
+
+{% endschema %}

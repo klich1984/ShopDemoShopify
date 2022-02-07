@@ -1,0 +1,10 @@
+{
+	"name": "Hero image",
+	"wrapper": "section.hero-image",
+	"sections": {
+		"hero": {
+			"type": "template-hero"
+		}
+	},
+	"order": ["hero"]
+}
