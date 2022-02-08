@@ -13,10 +13,11 @@
 		$itemMenu = d.querySelectorAll('.navegacion .menu > .item-submenu a'),
 		$closeMenu = d.querySelectorAll('.navegacion .submenu li.go-back'),
 		$summaryLinks = d.querySelectorAll('.summary-link'),
-		$submenuAll = d.querySelectorAll('.submenu')
+		$footer = d.querySelector('footer')
 
 	d.addEventListener('click', e => {
 		// console.log(e.target, $btnClose2)
+		console.log($footer)
 	})
 
 		// Mostrando SubMenu
@@ -38,12 +39,15 @@
 		$modalMovil.classList.toggle('is-active')
 		$body.classList.add('overflow')
 		$ammouncement.classList.add('is-modal')
+		$footer.style.display = 'none'
 	})
 
 	$btnClose.addEventListener('click', (e) => {
 		$modalMovil.classList.toggle('is-active')
 		$body.classList.remove('overflow')
 			$ammouncement.classList.remove('is-modal')
+			$footer.style.display = 'block'
+
 	})
 
 	// CERRAR TODOS LOS SUBMENUS
@@ -56,6 +60,8 @@
 			$ammouncement.classList.remove('is-modal')
 
 			$elementClose.style.left = '-100vw'
+			$footer.style.display = 'block'
+
 		})
 	});
 
