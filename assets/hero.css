@@ -2,11 +2,16 @@
 	width: 100%;
 }
 
-.btn-header {
-	display: flex;
+.hero-body {
 	position: relative;
+}
+
+.btn-header {
+	position: absolute;
+	width: 100%;
+	display: flex;
 	justify-content: center;
-	bottom: 5.5rem;
+	bottom: 2.2rem;
 	z-index: 50;
 	text-transform: uppercase;
 }
@@ -30,7 +35,8 @@ picture img {
 @media only screen and (min-width: 750px) {
 	.btn-header {
     justify-content: left;
-    bottom: 11.5rem;
-    left: 10rem;
+    bottom: 6.5rem;
+    left: 8rem;
+		width: max-content;
 	}
 }
