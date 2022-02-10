@@ -69,6 +69,7 @@ footer {
 
 .footer-logos {
 	display: flex;
+	align-items: center;
 }
 
 .footer-logos p {
@@ -217,6 +218,14 @@ input[type='checkbox' i] {
 	margin: 2rem 0 2rem 1rem;
 }
 
+.logo-white svg {
+	cursor: initial;
+}
+
+.logo-white svg:hover {
+	transform: none;
+}
+
 .navigation-contact {
 	font-size: var(--unnamed-font-size-14);
 	font-family: var(--unnamed-font-family-poppins);
@@ -248,21 +257,37 @@ input[type='checkbox' i] {
 
 .social-media > p {
 	font-size: 14px;
-    text-transform: uppercase;
-    font-family: 'Poppins';
-    margin-bottom: 1rem;
+	text-transform: uppercase;
+	font-family: 'Poppins';
+	margin-bottom: 1rem;
 }
 
 .icons-social-media a {
 	margin-right: 2rem;
 }
 
+.footer-logos svg {
+	cursor: initial;
+	margin-right: 1rem;
+}
 
+.footer-logos svg:hover {
+	transform: scale(1);
+}
 
+.footer-logos svg:first-child {
+	width: 81px;
+}
 
+.footer-logos svg:nth-child(2) {
+	width: 51px;
+}
 
 /* DESKTOP */
 @media (min-width: 767px) {
+
+	/*  Footer */
+
 	.footer-copyright {
 		flex-direction: row;
 		justify-content: space-between;
@@ -306,4 +331,88 @@ input[type='checkbox' i] {
 		margin: 0;
 		padding: 0.7rem 0;
 	}
+
+	/* Navigation */
+	.navigation-movil {
+		display: none;
+	}
+
+	.navigation-descktop {
+		display: block;
+	}
+
+	.navigation-descktop-container {
+		max-width: 1200px;
+		padding: 3rem 1rem;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.navigation-menu {
+		margin: 0;
+		display: flex;
+	}
+
+	.navigation-childs {
+		display: block;
+	}
+
+	.icons-social-media a {
+		margin-right: 1rem;
+	}
+
+	.logo-white {
+		margin: 0 0 2rem 0;
+	}
+
+	.social-media {
+		margin: 0;
+	}
+
+	.navigation-contact {
+		margin: 0 1rem;
+	}
+
+	.navigation-contact > p:first-child {
+		margin: 5px 0 2rem 0;
+		font-weight: var(--unnamed-font-weight-600);
+	}
+
+	.navigation-li {
+		padding: 0;
+		margin-top: 5px;
+		border-bottom: none;
+
+	}
+
+	.navigation-li:hover .navigation-li-top {
+		color: var(--unnamed-color-ffffff);
+		cursor: auto;
+	}
+
+	.navigation-childs li {
+		padding: 1rem 2rem 0 0;
+		font-weight: var(--unnamed-font-weight-normal);
+		text-transform: initial;
+	}
+
+	.container-item > p {
+		font-weight: var(--unnamed-font-weight-600);
+		margin-top: 5px;
+	}
+
+	.btn-primary {
+		width: 100%;
+    margin: 2rem 0 0 0;
+    padding: 1rem;
+	}
+
+	.footer-logos svg:first-child {
+		width: 104px;
+	}
+
+	.footer-logos svg:nth-child(2) {
+		width: 69px;
+	}
+
 }

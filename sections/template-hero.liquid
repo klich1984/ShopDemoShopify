@@ -1,6 +1,6 @@
-<!-- <div class="hero-container">
+<section class="hero-container">
 	<div class="hero-body">
-		{%- if section.settings.hero_image != blank -%}
+		<!-- {%- if section.settings.hero_image != blank -%}
 		<div class="hero-image-container">
 			<img
 				srcset="{%- if section.settings.hero_image.width >= 375 -%}{{ section.settings.hero_image | img_url: '375x' }} 375w,{%- endif -%}
@@ -24,10 +24,24 @@
 				}}"
 			/>
 		</div>
-		{%- endif -%}
-		<button>Comprar ahora</button>
+		{%- endif -%} -->
+    {% if section.settings.hero_image_movil != blank or section.settings.hero_image_descktop != blank %}
+      <picture>
+        <source media="(min-width:767px)" srcset="{{ section.settings.hero_image_descktop | img_url: 'master' }}">
+        <img
+          src="{{ section.settings.hero_image_movil | img_url: 'master' }}"
+          alt="{{ section.settings.hero_image_movil.alt }}"
+        >
+      </picture>
+      <div class="btn-header">
+        <a href="{{ section.settings.url_poduct }}" >{{ section.settings.text_button }}</a>
+      </div>
+    {% endif %}
 	</div>
-</div>
+
+
+</section>
+
 
 {% schema %}
 
@@ -36,16 +50,27 @@
   "settings": [
     {
       "type": "image_picker",
-      "id": "hero_image",
-      "label": "Inserte Imagen para el hero"
-    }, {
+      "id": "hero_image_movil",
+      "label": "Inserte Imagen del baner Para Tamaño Movil"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image_descktop",
+      "label": "Inserte Imagen del baner Para Tamaño Laptop"
+    },
+    {
       "type": "text",
       "id": "text_button",
       "label": "Texto Boton",
       "default": "Comprar"
+    },
+    {
+      "type": "url",
+      "id": "url_poduct",
+      "label": "URL destino"
     }
   ]
 }
 
 {%
-endschema %} -->
+endschema %}

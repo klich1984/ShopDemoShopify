@@ -41,6 +41,7 @@
 		</article>
 		<!-- Navegacion -->
 		<article class="footer-navigation">
+			<!-- Movil -->
 			<div class="navigation-movil">
 				<nav>
 					<ul class="navigation-menu">
@@ -71,9 +72,7 @@
 					</ul>
 				</nav>
 				<div class="logo-white">
-					<a href="/">
-						{% render 'icon-logo-white' %}
-					</a>
+					{% render 'icon-logo-white' %}
 				</div>
 				<div class="navigation-contact">
 					<p>CONTACTO</p>
@@ -102,8 +101,75 @@
 					</div>
 				</div>
 			</div>
+
+			<!-- Descktop -->
 			<div class="navigation-descktop">
-				<p>Desktop</p>
+				<div class="navigation-descktop-container">
+					<div class="container-item">
+						<div class="logo-white">
+								{% render 'icon-logo-white' %}
+						</div>
+
+						<div class="social-media">
+							<p>SIGUE a SNKRS</p>
+							<div class="icons-social-media">
+								<a href="#">
+									{% render 'icon-twitter-d' %}
+								</a>
+								<a href="#">
+									{% render 'icon-facebook-d' %}
+								</a>
+								<a href="#">
+									{% render 'icon-instagram-d' %}
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="navigation-contact">
+						<p>CONTACTO</p>
+						<p><a href="mailto:mymail@gmail.com">contacto@snkrs.com.mx</a></p>
+						<div>
+							<p>Av Insurgentes 2500-Local L-159,
+								<br>
+								Vista Hermosa, 64630 Monterrey, N.L.
+							</p>
+						</div>
+						<p><a href="tel:+578183458867">81 8345 8867</a></p>
+					</div>
+
+					<nav>
+						<ul class="navigation-menu">
+							<li class="navigation-li">
+								<div class="navigation-li-top">
+									<p>NOSOTROS</p>
+								</div>
+								<ul class="navigation-childs">
+									<li><a href="#"> Acerca de nosotros</a></li>
+									<li><a href="#"> Avisos de privacidad</a></li>
+									<li><a href="#"> Politicas de Privacidad</a></li>
+									<li><a href="#"> Terminos y condiciones</a></li>
+								</ul>
+							</li>
+							<li class="navigation-li">
+								<div class="navigation-li-top">
+									<p>AYUDA</p>
+								</div>
+								<ul class="navigation-childs">
+									<li><a href="#">Envíos y Devoluciones</a></li>
+									<li><a href="#">Preguntas frecuentes</a></li>
+									<li><a href="#">Servicio al cliente</a></li>
+									<li><a href="#">Cambios en Tiendas</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+
+					<div class="container-item">
+						<p>LOCALIZA UNA TIENDA</p>
+						<a href="#" class="btn-primary">ENCUENTRA UNA TIENDA</a>
+					</div>
+				</div>
 			</div>
 		</article>
 		<hr>
@@ -113,8 +179,8 @@
 				<p>©2021 - SNKRS Demo</p>
 			</div>
 			<div class="footer-logos">
-				<p>Ecomsur</p>
-				<p>Shopify</p>
+				{% render 'icon-ecomsur' %}
+				{% render 'icon-vtex' %}
 			</div>
 		</article>
 	</section>

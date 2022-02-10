@@ -42,6 +42,14 @@
 	--unnamed-decoration-underline: underline;
 	--unnamed-decoration-strikethrough: line-through;
 
+	/* Height */
+	--unnamed-height-header-movil: 60px;
+	--unnamed-height-header-descktop: 116px;
+	--unnamed-height-ammouncement: 32px;
+
+	/* Buttons */
+	--unnamed-border-button-4px: 4px;
+
 	/* Text-fluid @link https://utopia.fyi/type/calculator?c=320,14,1.2,1366,14,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l */
 
 	--step--2: clamp(0.61rem, 0.47rem + 0.69vw, 0.96rem);
@@ -110,7 +118,7 @@ p {
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	height: 32px;
+	height: var(--unnamed-height-ammouncement);
 	text-align: left;
 	font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-300)
 		var(--unnamed-font-size-14) / var(--unnamed-line-spacing-24)
@@ -146,7 +154,7 @@ p {
 	align-items: center;
 	width: 100%;
 	max-width: 1200px;
-	height: 60px;
+	height: var(--unnamed-height-header-movil);
 	padding: 0 1rem;
 }
 
@@ -203,7 +211,7 @@ svg:hover {
 
 	.header-container {
 		margin: auto;
-		height: 116px;
+		height: var(--unnamed-height-header-descktop)	;
 		flex-direction: column-reverse;
 		justify-content: space-around;
 	}
@@ -256,7 +264,7 @@ svg:hover {
 
 	.header-container-left {
 		display: flex;
-		width: 85vw;
+		width: 100%;
 		justify-content: space-between;
 		align-items: center;
 	}
@@ -292,6 +300,7 @@ svg:hover {
 	right: 0;
 	height: calc(100vh - 32px);
 	background-color: var(--unnamed-color-ffffff);
+	z-index: 100;
 }
 
 .modal-movil.is-active {
@@ -342,17 +351,6 @@ svg:hover {
 
 .menu-link-parent:hover {
 	background-color: var(--unnamed-color-9b9999);
-}
-
-/* .dropdown-child {
-	display: none;
-} */
-.menu-link-parent ul {
-	/* display: none; */
-}
-
-.menu-link-parent:hover ul {
-	/* display: none; */
 }
 
 .modal-movil-bottom {
@@ -451,13 +449,6 @@ summary {
 	align-items: center;
 	padding: 1rem 1.5rem;
 }
-
-/* summary .icon-caret {
-	position: absolute;
-	height: 0.6rem;
-	right: 0;
-	top: calc(50% - 0.2rem);
-} */
 
 summary::-webkit-details-marker {
 	display: none;
