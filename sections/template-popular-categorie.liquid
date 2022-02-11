@@ -1,0 +1,141 @@
+<!-- CDN de https://swiperjs.com/ -->
+
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+/>
+
+<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+
+<section class="container">
+	<div class="container-category{% if section.settings.flex_alignment %} reverse{% endif %}">
+		<div class="category-card">
+			{% if section.settings.product_image != blank %}
+			{% assign img_product = section.settings.product_image %}
+				<img src="{{ img_product | img_url: 'master'}}" alt="{{ img_product.alt }}">
+			{% else %}
+				{{ 'product-1' | placeholder_svg_tag }}
+			{% endif %}
+			<div class="container-description-category">
+				<h2>{{ section.settings.title }}</h2>
+				<p>{{ section.settings.description }}</p>
+				<div class="button-category">
+					<div class="container-button">
+						<a href="{{ section.settings.url_collection_1 }}">
+							<button class="mr-1">
+								{{ section.settings.button_1_text }}
+								{% render 'icon-arrow-right' %}
+							</button>
+						</a>
+					</div>
+					{% if section.settings.show_button_2 %}
+						<div class="container-button">
+							<a href="{{ section.settings.url_collection_2 }}">
+								<button class="mr-1">
+									{{ section.settings.button_2_text }}
+									{% render 'icon-arrow-right' %}
+								</button>
+							</a>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		<div class="category-carousel">
+			{%- assign selec_collection = section.settings.popular_collection.products -%}
+			{% render 'carousel', var_collection: selec_collection %}
+
+			<!-- {{ 'product-1' | placeholder_svg_tag }}
+			<div class="container-description-category">
+				<h2>Marca</h2>
+				<p>Nombre del producto</p>
+				<span>$ 135.900</span>
+			</div> -->
+		</div>
+	</div>
+</section>
+
+
+<script>
+	const $swiper = new Swiper('.swiper', {
+		direction: 'horizontal',
+		pagination: {
+			el: '.swiper-pagination'
+		},
+		navigation: {
+			prevEl: '.swiper-button-prev',
+			nextEl: '.swiper-button-next'
+		}
+	})
+</script>
+
+
+{% schema %}
+{
+	"name": "Categorie popular",
+	"settings": [
+		{
+			"type": "image_picker",
+			"id": "product_image",
+			"label": "Inserte Imagen del producto"
+		},
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Titulo Producto",
+			"default": "Titulo"
+		},
+		{
+			"type": "text",
+			"id": "description",
+			"label": "Descripcion Producto",
+			"default": "Descripcion del producto"
+		},
+		{
+			"type": "text",
+			"id": "button_1_text",
+			"label": "Categoria",
+			"default": "Categoria 1"
+		},
+		{
+			"type": "url",
+			"id": "url_collection_1",
+			"label": "URL Coleccion 1"
+		},
+		{
+			"type": "text",
+			"id": "button_2_text",
+			"label": "Categoria 2",
+			"default": "Categoria 2"
+		},
+		{
+			"type": "checkbox",
+			"id": "show_button_2",
+			"label": "Show Button 2",
+			"default": true
+		},
+		{
+			"type": "url",
+			"id": "url_collection_2",
+			"label": "URL Coleccion 2"
+		},
+		{
+			"type": "checkbox",
+			"id": "flex_alignment",
+			"label": "Flex alignment",
+			"default": true
+		},
+		{
+			"type": "collection",
+			"id": "popular_collection",
+			"label": "Coleccion Para el carrusel"
+		}
+	],
+	"presets": [
+		{
+			"name": "Category"
+		}
+	]
+}
+
+	{% endschema %}

@@ -1,5 +1,6 @@
 .hero-container {
 	width: 100%;
+	margin-bottom: 1.75rem;
 }
 
 .hero-body {
@@ -38,5 +39,10 @@ picture img {
     bottom: 6.5rem;
     left: 8rem;
 		width: max-content;
+	}
+
+	.hero-container {
+		width: 100%;
+		margin-bottom: 2.5rem;
 	}
 }

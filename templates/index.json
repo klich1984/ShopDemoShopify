@@ -4,7 +4,16 @@
 	"sections": {
 		"hero": {
 			"type": "template-hero"
+		},
+		"popular-categories": {
+			"type": "template-popular-categorie"
+		},
+		"feature-collection": {
+			"type": "feature-collection",
+			"settings": {
+				"featured_collection": "all"
+			}
 		}
 	},
-	"order": ["hero"]
+	"order": ["hero", "popular-categories", "feature-collection"]
 }

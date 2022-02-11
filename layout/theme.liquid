@@ -25,13 +25,17 @@
 		{{ 'application.css' | asset_url | stylesheet_tag }}
 		<!-- Hero -->
 		{{ 'hero.css' | asset_url | stylesheet_tag }}
+		<!-- Popular Categories -->
+		{{ 'popular-category.css' | asset_url | stylesheet_tag }}
+		<!-- Popular Categorie -->
+		{{ 'product.css' | asset_url | stylesheet_tag }}
 
 		{{ 'main.css' | asset_url | stylesheet_tag }}
 	</head>
 	<body>
 		{% section 'announcement-text' %}
 		{% section 'header' %}
-		
+
 		<main role="main">
 			{{ content_for_layout }}
 		</main>

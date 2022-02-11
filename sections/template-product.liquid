@@ -1,0 +1,56 @@
+<!-- CDN de https://swiperjs.com/ -->
+
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+/>
+
+<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+
+<div class="container">
+	<div class="products">
+		<div class="product-medias">
+			<div class="container-movil" style="display: none;">
+				{% for product in product.media %}
+				<div class="swiper-slide">
+					<div class="container-product-img">
+						{% render 'product-media', media: product %}
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+
+			<div class="category-carousel swiper">
+				<div class="swiper-wrapper">
+					{% for media in product.media %}
+						<div class="swiper-slide">
+							<div class="swiper-slide-content">
+								{% render 'product-media', media: media %}
+							</div>
+						</div>
+	
+						{% endfor %}
+					</div>
+					<div class="swiper-pagination"></div>
+
+					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-next"></div>
+			</div>
+		</div>
+		<div class="product-information"></div>
+	</div>
+</div>
+
+
+<script>
+	const $swiper = new Swiper('.swiper', {
+		direction: 'horizontal',
+		pagination: {
+			el: '.swiper-pagination'
+		},
+		navigation: {
+			prevEl: '.swiper-button-prev',
+			nextEl: '.swiper-button-next'
+		}
+	})
+</script>
