@@ -1,20 +1,13 @@
-<!-- CDN de https://swiperjs.com/ -->
-
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
-/>
-
-<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-
+<!-- Template de categorias Populares -->
 <section class="container">
+	<!-- Seccion con Card de producto para ingresarlo manauanlmente -->
 	<div class="container-category{% if section.settings.flex_alignment %} reverse{% endif %}">
 		<div class="category-card">
 			{% if section.settings.product_image != blank %}
 			{% assign img_product = section.settings.product_image %}
 				<img src="{{ img_product | img_url: 'master'}}" alt="{{ img_product.alt }}">
 			{% else %}
-				{{ 'product-1' | placeholder_svg_tag }}
+				{{ 'product-5' | placeholder_svg_tag }}
 			{% endif %}
 			<div class="container-description-category">
 				<h2>{{ section.settings.title }}</h2>
@@ -41,33 +34,59 @@
 				</div>
 			</div>
 		</div>
+		<!-- Seccion con un carrusel -->
 		<div class="category-carousel">
-			{%- assign selec_collection = section.settings.popular_collection.products -%}
-			{% render 'carousel', var_collection: selec_collection %}
+			<div class="carousel-movil">
+				{%- assign select_collection = section.settings.popular_collection.products -%}
+				{%- render 'carousel-collection', colection: select_collection -%}
+			</div>
+			<div class="carousel-desktop">
 
-			<!-- {{ 'product-1' | placeholder_svg_tag }}
-			<div class="container-description-category">
-				<h2>Marca</h2>
-				<p>Nombre del producto</p>
-				<span>$ 135.900</span>
-			</div> -->
+				<div class="flex-carousel">
+					<section>
+						<article class="container-carousel">
+							<!-- Swiper -->
+							<div class="swiper swiper-desktop">
+								<div class="container-buttons-carousel">
+									<div class="swiper-pagination"></div>
+									<div class="container-buttons-next-to-back">
+										<div class="swiper-button-prev"></div>
+										<div class="swiper-button-next"></div>
+									</div>
+								</div>
+								<div class="swiper-wrapper">
+									{%- for product_collection in section.settings.popular_collection.products -%}
+										<div class="swiper-slide">
+											{% if product_collection.media %}
+												{% render 'product-media', media: product_collection.media[0] %}
+											{% else %}
+												{{ 'product-1' | placeholder_svg_tag }}
+											{% endif %}
+											<h4>{{ product_collection.vendor }}</h4>
+											<p>{{ product_collection.title | truncate: 12, '...' }}</p>
+											<h2>{{ product_collection.price | money_without_trailing_zeros  }}</h2>
+										</div>
+									{%- endfor -%}
+								</div>
+								
+							</div>
+						</article>
+					</section>
+
+				</div>
+
+
+
+				<!-- {{ 'product-1' | placeholder_svg_tag }}
+				<div class="container-description-category">
+					<h2>Marca</h2>
+					<p>Nombre del producto</p>
+					<span>$ 135.900</span>
+				</div> -->
+			</div>
 		</div>
 	</div>
 </section>
-
-
-<script>
-	const $swiper = new Swiper('.swiper', {
-		direction: 'horizontal',
-		pagination: {
-			el: '.swiper-pagination'
-		},
-		navigation: {
-			prevEl: '.swiper-button-prev',
-			nextEl: '.swiper-button-next'
-		}
-	})
-</script>
 
 
 {% schema %}

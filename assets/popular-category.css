@@ -1,3 +1,7 @@
+.carousel-desktop {
+	display: none;
+}
+
 .container-category {
 	display: flex;
 	flex-direction: column;
@@ -64,5 +68,17 @@ button svg {
 
 	.reverse {
 		flex-direction: row-reverse;
+	}
+
+	.category-carousel {
+		width: 250px;
+	}
+
+	.carousel-movil {
+		display: none;
+	}
+
+	.carousel-desktop {
+		display: block;
 	}
 }
