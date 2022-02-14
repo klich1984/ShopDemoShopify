@@ -1,10 +1,35 @@
-{% paginate collection.products by 2 %}
-	{% for product in collection.products %}
-	{% else %}
-		<p>No hay productos en esta coleccion</p>
-	{% endfor %}
-<div>
-	{% render 'pagination', pagination: paginate %}
-</div>
+	<div class="px-4 -py-8">
+		{% paginate collection.products by 3 %}
+		<h1 class="text-3xl text-center">{{ collection.title }}</h1>
 
-{% endpaginate %}
+		<div class="max-w-6xl mx-auto mb-4">
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+				{% for product in collection.products %}
+					<div class="w-full py-6-px3">
+						<div class="border bg-white shadow-lg rounded-lg overflow-hidden">
+							<a href="{{ product.url }}">
+								{%- comment -%}Si hay una imagen destacada dentro del producto{%- endcomment -%}
+								{%- if product.featured_image -%}
+								<div class="h-80 overflow-hidden">
+									<img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.featured_img.alt }}" class="w-full h-full object-cover">
+								</div>
+								{%- else -%}
+									{{ 'product-1' | placeholder_svg_tag: 'w-full h-full object-cover bg-gray-100' }}
+								{%- endif -%}
+							</a>
+							<div class="flex flex-col p-4">
+								<p>{{ product.vendor }}</p>
+								<a href="{{ product.url }}">{{ product.title }}</a>
+								<p>{{ product.price | money_without_trailing_zeros }}</p>
+							</div>
+						</div>
+					</div>
+				{% else %}
+					<p>No hay productos en esta coleccion</p>
+				{% endfor %}
+			</div>
+		</div>
+			{% render 'pagination', pagination: paginate %}
+		{% endpaginate %}
+	</div>
+
