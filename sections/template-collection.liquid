@@ -1,0 +1,10 @@
+{% paginate collection.products by 2 %}
+	{% for product in collection.products %}
+	{% else %}
+		<p>No hay productos en esta coleccion</p>
+	{% endfor %}
+<div>
+	{% render 'pagination', pagination: paginate %}
+</div>
+
+{% endpaginate %}
