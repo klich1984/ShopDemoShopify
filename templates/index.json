@@ -13,7 +13,10 @@
 			"settings": {
 				"featured_collection": "all"
 			}
+		},
+		"carousel-products": {
+			"type": "template-carousel-products"
 		}
 	},
-	"order": ["hero", "popular-categories", "feature-collection"]
+	"order": ["hero", "popular-categories", "feature-collection", "carousel-products"]
 }
