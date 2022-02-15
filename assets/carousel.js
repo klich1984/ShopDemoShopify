@@ -30,3 +30,16 @@ var swiper2 = new Swiper('.swiper-desktop', {
 		prevEl: '.swiper-button-prev',
 	},
 })
+
+const $select = document.getElementById('sort_by')
+
+$select.addEventListener('change', e => {
+	// Obtener el estado actual de la url ej: http://127.0.0.1:9292/collections/reebok/Tenis
+	let url = new URL(window.location.href)
+	// Si encuentra un parametro con el nombre de sort_by cambiamos su valor al evento actual
+	url.searchParams.set('sort_by', e.currentTarget.value)
+	// Le pasamos el valor a la url para que se redireccione
+	window.location = url.href
+})
+
+

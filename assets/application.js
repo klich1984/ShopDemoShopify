@@ -17,7 +17,7 @@
 
 	d.addEventListener('click', e => {
 		// console.log(e.target, $btnClose2)
-		console.log($footer)
+		// console.log($footer)
 	})
 
 		// Mostrando SubMenu
@@ -25,7 +25,7 @@
 		el.addEventListener('click', (e) => {
 			let indexMenu = e.target.parentNode.getAttribute('menu')
 
-		console.log(indexMenu);
+		// console.log(indexMenu);
 		let $submenu = d.querySelector('.submenu-parent[menu="' + indexMenu + '"]').nextSibling.nextElementSibling
 
 		$submenu.style.left = '0'
@@ -115,7 +115,7 @@
 			let $elementClose = e.target.parentNode
 			$elementClose.style.left = '-320px'
 
-			console.log(elementClose)
 		})
 	})
+
 })(document)
