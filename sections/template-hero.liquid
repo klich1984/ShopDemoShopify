@@ -8,9 +8,11 @@
           alt="{{ section.settings.hero_image_movil.alt }}"
         >
       </picture>
-      <div class="btn-header">
-        <a href="{{ section.settings.url_poduct }}" >{{ section.settings.text_button }}</a>
-      </div>
+      {%- unless section.settings.show_button -%}
+        <div class="btn-header">
+          <a href="{{ section.settings.url_poduct }}" >{{ section.settings.text_button }}</a>
+        </div>
+      {%- endunless -%}
     {% endif %}
 	</div>
 
@@ -43,6 +45,12 @@
       "type": "url",
       "id": "url_poduct",
       "label": "URL destino"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "default": false,
+      "label": "Ocultar Boton"
     }
   ],
   "presets": [
