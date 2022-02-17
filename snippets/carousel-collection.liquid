@@ -5,8 +5,10 @@
 			<div class="swiper-wrapper">
 				{%- for product_collection in colection -%}
 					<div class="swiper-slide">
-						{% if product_collection.media %}
-							{% render 'product-media', media: product_collection.media[0] %}
+						<a href="{{ product_collection.url }}">
+							{% if product_collection.media %}
+								{% render 'product-media', media: product_collection.media[0] %}
+						</a>
 						{% else %}
 							{{ 'product-1' | placeholder_svg_tag }}
 						{% endif %}

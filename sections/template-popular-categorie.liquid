@@ -1,7 +1,7 @@
 <!-- Template de categorias Populares -->
 <section class="container">
-	<!-- Seccion con Card de producto para ingresarlo manauanlmente -->
 	<div class="container-category{% if section.settings.flex_alignment %} reverse{% endif %}">
+		<!-- Seccion con Card de producto para ingresarlo manauanlmente -->
 		<div class="category-card">
 			{% if section.settings.product_image != blank %}
 			{% assign img_product = section.settings.product_image %}
@@ -57,10 +57,12 @@
 								<div class="swiper-wrapper">
 									{%- for product_collection in section.settings.popular_collection.products -%}
 										<div class="swiper-slide">
-											{% if product_collection.media %}
-												{% render 'product-media', media: product_collection.media[0] %}
+											<a href="{{ product_collection.url }}">
+												{% if product_collection.media %}
+													{% render 'product-media', media: product_collection.media[0] %}
+											</a>
 											{% else %}
-												{{ 'product-1' | placeholder_svg_tag }}
+												{{ 'product-2' | placeholder_svg_tag }}
 											{% endif %}
 											<h4>{{ product_collection.vendor }}</h4>
 											<p>{{ product_collection.title | truncate: 12, '...' }}</p>
@@ -75,14 +77,15 @@
 
 				</div>
 
-
-
-				<!-- {{ 'product-1' | placeholder_svg_tag }}
-				<div class="container-description-category">
-					<h2>Marca</h2>
-					<p>Nombre del producto</p>
-					<span>$ 135.900</span>
-				</div> -->
+				{%- comment -%}
+				
+								<!-- {{ 'product-1' | placeholder_svg_tag }}
+								<div class="container-description-category">
+									<h2>Marca</h2>
+									<p>Nombre del producto</p>
+									<span>$ 135.900</span>
+								</div> -->
+{%- endcomment -%}
 			</div>
 		</div>
 	</div>
@@ -148,11 +151,6 @@
 			"type": "collection",
 			"id": "popular_collection",
 			"label": "Coleccion Para el carrusel"
-		},
-		{
-			"type": "product",
-			"id": "collection_product",
-			"label": "Coleccion para el carusel de productos"
 		}
 	],
 	"presets": [

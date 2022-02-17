@@ -31,6 +31,24 @@ var swiper2 = new Swiper('.swiper-desktop', {
 	},
 })
 
+// Swiper product
+var swiper3 = new Swiper('.swiper-product', {
+	slidesPerView: 1,
+	spaceBetween: 30,
+	loopFillGroupWithBlank: true,
+	keyboard: {
+		enabled: true,
+	},
+	pagination: {
+		el: '.swiper-pagination',
+		clickable: true,
+	},
+	navigation: {
+		nextEl: '.swiper-button-next',
+		prevEl: '.swiper-button-prev',
+	},
+})
+
 const $select = document.getElementById('sort_by')
 
 $select.addEventListener('change', e => {
@@ -41,5 +59,3 @@ $select.addEventListener('change', e => {
 	// Le pasamos el valor a la url para que se redireccione
 	window.location = url.href
 })
-
-
