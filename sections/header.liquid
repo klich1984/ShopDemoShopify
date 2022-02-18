@@ -8,11 +8,15 @@
       <!-- Store NAME/LOGO -->
       <div class="header-logo">
         {% if section.settings.logo == blank %}
+				<a href="/">
           {{ shop.name }}
+				</a>
         {% else %}
           {% assign image_size = section.settings.logo_width | append:
 				'px' %}
+				<a href="/">
           <img src="{{ section.settings.logo | img_url: image_size }}" alt="{{ section.settings.logo.alt }}"/>
+				</a>
         {% endif %}
       </div>
 					<!-- Styles MegaMenu -->

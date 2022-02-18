@@ -13,10 +13,11 @@
 		$itemMenu = d.querySelectorAll('.navegacion .menu > .item-submenu a'),
 		$closeMenu = d.querySelectorAll('.navegacion .submenu li.go-back'),
 		$summaryLinks = d.querySelectorAll('.summary-link'),
-		$submenuAll = d.querySelectorAll('.submenu')
+		$footer = d.querySelector('footer')
 
 	d.addEventListener('click', e => {
 		// console.log(e.target, $btnClose2)
+		// console.log($footer)
 	})
 
 		// Mostrando SubMenu
@@ -24,7 +25,7 @@
 		el.addEventListener('click', (e) => {
 			let indexMenu = e.target.parentNode.getAttribute('menu')
 
-		console.log(indexMenu);
+		// console.log(indexMenu);
 		let $submenu = d.querySelector('.submenu-parent[menu="' + indexMenu + '"]').nextSibling.nextElementSibling
 
 		$submenu.style.left = '0'
@@ -38,12 +39,15 @@
 		$modalMovil.classList.toggle('is-active')
 		$body.classList.add('overflow')
 		$ammouncement.classList.add('is-modal')
+		$footer.style.display = 'none'
 	})
 
 	$btnClose.addEventListener('click', (e) => {
 		$modalMovil.classList.toggle('is-active')
 		$body.classList.remove('overflow')
 			$ammouncement.classList.remove('is-modal')
+			$footer.style.display = 'block'
+
 	})
 
 	// CERRAR TODOS LOS SUBMENUS
@@ -56,6 +60,8 @@
 			$ammouncement.classList.remove('is-modal')
 
 			$elementClose.style.left = '-100vw'
+			$footer.style.display = 'block'
+
 		})
 	});
 
@@ -109,7 +115,7 @@
 			let $elementClose = e.target.parentNode
 			$elementClose.style.left = '-320px'
 
-			console.log(elementClose)
 		})
 	})
+
 })(document)

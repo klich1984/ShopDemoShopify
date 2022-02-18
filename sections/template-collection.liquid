@@ -1,0 +1,76 @@
+	<div class="px-4 -py-8">
+		{% paginate collection.products by section.settings.number_of_products_per_page %}
+		<h1 class="text-3xl text-center">{{ collection.title }}</h1>
+
+	<section class="container">
+		<h2>SECCION DE FILTROS</h2>
+		<div class="container-filters">
+			{%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+				{{ 'component-filters.css' | asset_url | stylesheet_tag }}
+				<script src="{{ 'component-filters.js' | asset_url }}" defer="defer"></script>
+
+				<div class="page-width" id="main-collection-filters" data-id="{{ section.id }}">
+					{% render 'filters', results: collection, collapse_on_larger_devices: section.settings.collapse_on_larger_devices, enable_filtering: section.settings.enable_filtering, enable_sorting: section.settings.enable_sorting %}
+					{%- comment -%}
+						{% render 'facets', results: collection, enable_filtering: section.settings.enable_filtering, enable_sorting: section.settings.enable_sorting, collapse_on_larger_devices: section.settings.collapse_on_larger_devices %}
+					{%- endcomment -%}
+				</div>
+			{%- endif -%}
+		</div>
+	</section>
+
+		<div class="product-filters">
+			<select name="sorting" id="sort_by" class="product-filter-select">
+				{%- for option in collection.sort_options -%}
+					<option value="{{ option.value }}" {%- if option.value == collection.sort_by -%}selected{%- endif -%}>
+						{{ option.name }}
+					</option>
+				{%- endfor -%}
+			</select>
+		</div>
+
+		<div class="max-w-6xl mx-auto mb-4">
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+				{% for product in collection.products %}
+					{% render 'product-card', var_product: product %}
+				{% else %}
+					<p>No hay productos en esta coleccion</p>
+				{% endfor %}
+			</div>
+		</div>
+			{% render 'pagination', pagination: paginate %}
+		{% endpaginate %}
+	</div>
+
+
+{% schema %}
+{
+	"name": "Template Colection",
+	"settings": [
+		{
+			"type": "number",
+			"id": "number_of_products_per_page",
+			"label": "Numeros de productos por pagina",
+			"default": 3
+		},
+		{
+      "type": "checkbox",
+      "id": "enable_filtering",
+      "default": true,
+      "label": "Habilitar Filtros"
+    },
+		{
+      "type": "checkbox",
+      "id": "collapse_on_larger_devices",
+      "default": false,
+      "label": "Contraer en PC"
+    },
+		{
+      "type": "checkbox",
+      "id": "enable_sorting",
+      "default": true,
+      "label": "Habilitar busqueda orden"
+    }
+	]
+}
+{% endschema %}

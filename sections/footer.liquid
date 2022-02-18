@@ -1,0 +1,187 @@
+{{ 'footer.css' | asset_url | stylesheet_tag }}
+
+<footer>
+	<section class="footer-container">
+		<!-- Boletin Informativo -->
+		<article class="newsletter">
+			<div class="newsletter-container">
+				<div class="footer-newsletter-title">
+					<h5>SUSCRÍBETE Y OBTÉN 10% DE DESCUENTO</h5>
+				</div>
+				<form class="form">
+					<div class="btn-form">
+						<input
+							class="label-email"
+							type="email"
+							name="email"
+							id="email"
+							required
+							placeholder="Correo electrónico">
+						<div class="label-submit-container">
+							<input
+								class="label-submit"
+								type="submit"
+								value="SUSCRIBIR">
+						</div>
+					</div>
+					<div class="terms">
+						<input
+							class="label-checkbox"
+							type="checkbox"
+							id="check1"
+							name="terms">
+						<label
+							class="label-terms"
+							for="check1">
+								Acepto <a href="#">Términos y Condiciones</a> y la <a href="#">Política de Privacidad</a>
+							</label>
+					</div>
+				</form>
+			</div>
+		</article>
+		<!-- Navegacion -->
+		<article class="footer-navigation">
+			<!-- Movil -->
+			<div class="navigation-movil">
+				<nav>
+					<ul class="navigation-menu">
+						<li class="navigation-li">
+							<div class="navigation-li-top">
+								<p>NOSOTROS</p>
+								{% render 'icon-angle-down' %}
+							</div>
+							<ul class="navigation-childs">
+								<li><a href="#"> Acerca de nosotros</a></li>
+								<li><a href="#"> Avisos de privacidad</a></li>
+								<li><a href="#"> Politicas de Privacidad</a></li>
+								<li><a href="#"> Terminos y condiciones</a></li>
+							</ul>
+						</li>
+						<li class="navigation-li">
+							<div class="navigation-li-top">
+								<p>AYUDA</p>
+								{% render 'icon-angle-down' %}
+							</div>
+							<ul class="navigation-childs">
+								<li><a href="#">Envíos y Devoluciones</a></li>
+								<li><a href="#">Preguntas frecuentes</a></li>
+								<li><a href="#">Servicio al cliente</a></li>
+								<li><a href="#">Cambios en Tiendas</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+				<div class="logo-white">
+					{% render 'icon-logo-white' %}
+				</div>
+				<div class="navigation-contact">
+					<p>CONTACTO</p>
+					<p><a href="mailto:mymail@gmail.com">contacto@snkrs.com.mx</a></p>
+					<div>
+						<p>Av Insurgentes 2500-Local L-159,
+							<br>
+							Vista Hermosa, 64630 Monterrey, N.L.
+						</p>
+					</div>
+					<p><a href="tel:+578183458867">81 8345 8867</a></p>
+				</div>
+				<a href="#" class="btn-primary">ENCUENTRA UNA TIENDA</a>
+				<div class="social-media">
+					<p>SIGUE a SNKRS</p>
+					<div class="icons-social-media">
+						<a href="#">
+							{% render 'icon-twitter' %}
+						</a>
+						<a href="#">
+							{% render 'icon-facebook' %}
+						</a>
+						<a href="#">
+							{% render 'icon-instagram' %}
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Descktop -->
+			<div class="navigation-descktop">
+				<div class="navigation-descktop-container">
+					<div class="container-item">
+						<div class="logo-white">
+								{% render 'icon-logo-white' %}
+						</div>
+
+						<div class="social-media">
+							<p>SIGUE a SNKRS</p>
+							<div class="icons-social-media">
+								<a href="#">
+									{% render 'icon-twitter-d' %}
+								</a>
+								<a href="#">
+									{% render 'icon-facebook-d' %}
+								</a>
+								<a href="#">
+									{% render 'icon-instagram-d' %}
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="navigation-contact">
+						<p>CONTACTO</p>
+						<p><a href="mailto:mymail@gmail.com">contacto@snkrs.com.mx</a></p>
+						<div>
+							<p>Av Insurgentes 2500-Local L-159,
+								<br>
+								Vista Hermosa, 64630 Monterrey, N.L.
+							</p>
+						</div>
+						<p><a href="tel:+578183458867">81 8345 8867</a></p>
+					</div>
+
+					<nav>
+						<ul class="navigation-menu">
+							<li class="navigation-li">
+								<div class="navigation-li-top">
+									<p>NOSOTROS</p>
+								</div>
+								<ul class="navigation-childs">
+									<li><a href="#"> Acerca de nosotros</a></li>
+									<li><a href="#"> Avisos de privacidad</a></li>
+									<li><a href="#"> Politicas de Privacidad</a></li>
+									<li><a href="#"> Terminos y condiciones</a></li>
+								</ul>
+							</li>
+							<li class="navigation-li">
+								<div class="navigation-li-top">
+									<p>AYUDA</p>
+								</div>
+								<ul class="navigation-childs">
+									<li><a href="#">Envíos y Devoluciones</a></li>
+									<li><a href="#">Preguntas frecuentes</a></li>
+									<li><a href="#">Servicio al cliente</a></li>
+									<li><a href="#">Cambios en Tiendas</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+
+					<div class="container-item">
+						<p>LOCALIZA UNA TIENDA</p>
+						<a href="#" class="btn-primary">ENCUENTRA UNA TIENDA</a>
+					</div>
+				</div>
+			</div>
+		</article>
+		<hr>
+		<!-- Copyright -->
+		<article class="footer-copyright">
+			<div class="footer-copyright-name">
+				<p>©2021 - SNKRS Demo</p>
+			</div>
+			<div class="footer-logos">
+				{% render 'icon-ecomsur' %}
+				{% render 'icon-vtex' %}
+			</div>
+		</article>
+	</section>
+</footer>

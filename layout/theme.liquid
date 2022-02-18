@@ -21,17 +21,35 @@
 			href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
 			rel="stylesheet"
 		/>
+		<!-- Link Swiper's CSS -->
+		<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
 		<!-- Tailwind -->
 		{{ 'application.css' | asset_url | stylesheet_tag }}
-
+		<!-- Hero -->
+		{{ 'hero.css' | asset_url | stylesheet_tag }}
+		<!-- Popular Categories -->
+		{{ 'popular-category.css' | asset_url | stylesheet_tag }}
+		<!-- Popular Categorie -->
+		{{ 'product.css' | asset_url | stylesheet_tag }}
+		<!-- Carousel collection -->
+		{{ 'carousel-collection.css' | asset_url | stylesheet_tag }}
+		<!-- filters collection -->
+		{{ 'filter.css' | asset_url | stylesheet_tag }}
+		<!-- main -->
 		{{ 'main.css' | asset_url | stylesheet_tag }}
 	</head>
 	<body>
-		{% section 'announcement-text' %} {% section 'header' %}
+		{% section 'announcement-text' %}
+		{% section 'header' %}
 
 		<main role="main">
 			{{ content_for_layout }}
 		</main>
+		{% section 'footer' %}
 		{{ 'application.js' | asset_url | script_tag }}
+		<!-- Swiper JS -->
+		<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+		<!-- Carousel.js -->
+		{{ 'carousel.js' | asset_url | script_tag }}
 	</body>
 </html>

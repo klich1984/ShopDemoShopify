@@ -20,6 +20,8 @@
 	.exo-menu > li > a:hover,
 	li.drop-down ul > li > a:hover {
 		color: var(--unnamed-color-9b9999);
+		position: relative;
+		z-index: 100;
 	}
 	.exo-menu i {
 		float: left;
@@ -31,6 +33,7 @@
 	.mega-menu:hover,
 	.mega-drop-down a:hover + .mega-menu {
 		display: block;
+		z-index: 100;
 	}
 
 	.mega-menu {

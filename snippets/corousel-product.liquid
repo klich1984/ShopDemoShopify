@@ -1,0 +1,49 @@
+{%- comment -%}
+Asi se llama
+{% assign saludar = collections %}
+	{% render 'corousel-product', saludo: saludar %}
+
+{%- endcomment -%}
+
+
+
+
+Hello
+
+{% for name in saludo %}
+<br>
+	<h2>Nombre: {{ name.title }}</h2>
+	<p>Descripcion: {{ name.description }}</p>
+	<p>Imagen por defecto (featured_img)</p>
+	<img src="{{ name.featured_image | img_url: 'medium'}}" alt="">
+	<p>Filtros: {{ name.filters }}</p>
+	<p>handle: {{ name.handle }}</p>
+	<p>id: {{ name.id }}</p>
+	<p>imagen de la coleccion: </p>
+	{% if name.image %}
+		{{ name.image | image_url: width: 2048 | image_tag }}
+		{% else %}
+			nop
+	{% endif %}
+	<p>Next producto:</p>
+	{% if name.next_product %}
+		{{ 'Next product' | link_to: name.next_product.url, name.next_product.title }}
+	{% else %}
+		<p>No next</p>
+	{% endif %}
+	<p>Productos: {{ name.products }}</p>
+	{% for product in name.products %}
+		<p>Titulo: {{ product.title }}</p>
+		<p>Precio: {{ product.price_varies }}</p>
+		<p>URL: {{ product.url }}</p>
+		Para ver los tags=etiquetas
+		{% for tag in product.tags %}
+			<p>Tag: {{ tag }}</p>
+		{% endfor %}
+	{% endfor %}
+	<p>Cuenta productos: {{ name.products_count }}</p>
+	<hr>
+{% endfor %}
+
+<hr>
+

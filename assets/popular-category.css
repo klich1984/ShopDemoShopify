@@ -1,0 +1,84 @@
+.carousel-desktop {
+	display: none;
+}
+
+.container-category {
+	display: flex;
+	flex-direction: column;
+}
+
+.container-category h2 {
+	font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-600)
+		var(--unnamed-font-size-36) / var(--unnamed-line-spacing-42)
+		var(--unnamed-font-family-poppins);
+}
+
+.container-category p {
+	font: var(--unnamed-font-style-normal) normal
+		var(--unnamed-font-weight-normal) var(--unnamed-font-size-16) /
+		var(--unnamed-line-spacing-24) var(--unnamed-font-family-poppins);
+}
+
+.container-category h2,
+.container-category p {
+	margin: 1rem 0;
+}
+
+.container-category h2,
+.button-category a button {
+	text-transform: uppercase;
+}
+
+.button-category {
+
+	display: flex;
+}
+
+.container-button a button {
+	font-weight: var(--unnamed-font-weight-700);
+}
+
+.container-button:first-child {
+	margin-right: 2.5rem;
+}
+
+.container-button a button {
+	margin-right: 0;
+}
+
+button svg {
+	margin-left: 1rem;
+}
+
+.reverse {
+	flex-direction: column;
+}
+
+/* Carrousel */
+
+@media only screen and (min-width: 750px) {
+	.container-category {
+		display: flex;
+		flex-direction: row;
+	}
+
+	.container-category > div {
+		flex: 0 1 50%;
+	}
+
+	.reverse {
+		flex-direction: row-reverse;
+	}
+
+	.category-carousel {
+		width: 250px;
+	}
+
+	.carousel-movil {
+		display: none;
+	}
+
+	.carousel-desktop {
+		display: block;
+	}
+}

@@ -1,0 +1,49 @@
+.img-text {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.swiper-button-prev.carrousel-movil-product,
+.swiper-button-next.carrousel-movil-product {
+	display: block;
+}
+
+.swiper-product div:nth-child(3),
+.swiper-product div:nth-child(4) {
+	height: 100%;
+  display: flex;
+}
+
+.swiper-product div:nth-child(2) {
+	bottom: 2rem;
+}
+
+.ofert {
+	background-color: red;
+	border-radius: 30px;
+	width: fit-content;
+	padding: 0.2rem 1rem;
+	color: var(--unnamed-color-ffffff);
+	margin: 0 1rem;
+	font-weight: var(--unnamed-font-weight-600);
+}
+
+.price-compare {
+	text-decoration: line-through;
+}
+
+.label-variant {
+	margin-right: 1rem;
+	font-weight: var(--unnamed-font-weight-600);
+}
+
+.select-variant,
+.input-quantity  {
+	width: 100%;
+	padding: 0.5rem;
+	border: 1px solid #cecece;
+	border-radius: 4px;
+	margin-bottom: 1rem;
+}
+

@@ -1,0 +1,258 @@
+{%- assign selected_variant = product.selected_or_first_available_variant -%}
+
+
+<div class="container">
+	{% render 'breadcrumbs-two' %}
+	<div class="carousel-movil">
+		<section>
+			<article class="container-carousel">
+				<!-- Swiper -->
+				<div class="swiper h-94 swiper-product">
+					<div class="swiper-wrapper">
+						{%- for media in product.media -%}
+							<div class="swiper-slide">
+								<div class="h-80 overflow-hidden p2">
+									{% render 'product-media', media: media %}
+								</div>
+							</div>
+						{%- endfor -%}
+					</div>
+					<div class="swiper-pagination"></div>
+					<div class="swiper-button-prev carrousel-movil-product"></div>
+
+					<div class="swiper-button-next carrousel-movil-product"></div>
+
+				</div>
+			</article>
+		</section>
+	</div>
+	<div class="product-information">
+		<!-- formulario que se encargara de agregar al carrito el producto -->
+		{% form 'product', product, id: 'product-form', novalidate: 'novalidate' %}
+			<!--Para saber que producto es  -->
+			<input type="hidden" name="id" value="{{ selected_variant.id }}">
+
+			{%- for block in section.blocks -%}
+				{%- case block.type -%}
+					{%- when 'vendor' -%}
+						<div>
+							<span>{{ product.vendor }}</span>
+						</div>
+
+					{%- when 'title' -%}
+						<div>
+							<p>{{ product.title }}</p>
+						</div>
+
+					{%- when 'price' -%}
+						<div id="price-{{ section.id }}">
+							<span class="price-compare">
+								{{ selected_variant.compare_at_price | money_without_trailing_zeros }}
+							</span>
+							<span>
+								{{ selected_variant.price | money_without_trailing_zeros }}
+							</span>
+
+							{%- if selected_variant.price < selected_variant.compare_at_price -%}
+								<span class="ofert">Oferta</span>
+							{%- endif -%}
+						</div>
+
+					{%- when 'variant_selector' -%}
+						<div>
+							<!-- Si el producto tiene mas de una variante es falso. Los data-atribute lo usaremos en JS-->
+							{%- unless product.has_only_default_variant -%}
+								<variant-selector data-url="{{ product.url }}" data-section="{{ section.id }}">
+									<!-- Mostrara las variantes que tenemos ej: Color, Tamaño -->
+									{%- for option in product.options_with_values -%}
+									<!-- crear un id unico ej: Option--template-123-0 option--template-123-1  -->
+										<label class="label-variant" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+											{{ option.name }}
+										</label>
+
+										<div>
+											<!-- crear un select con todas las opciones -->
+											<select
+												name="options[{{ option.name | escape }}]"
+												id="Option-{{ section.id }}-{{ forloop.index0 }}"
+												class="select-variant">
+													{%- for value in option.values -%}
+														<option
+															value="{{ value | escape }}"
+															{%- if option.selected_value == value -%}
+																selected="selected"
+															{%- endif -%}
+														>
+															{{ value }}
+														</option>
+													{%- endfor -%}
+											</select>
+										</div>
+
+										<script type="application/json">
+											{{ product.variants | json }}
+										</script>
+
+									{%- endfor -%}
+								</variant-selector>
+							{%- endunless  -%}
+						</div>
+
+						{%- when 'quantity' -%}
+						<div>
+							<label for="Quantity-{{ section.id }}">Cantidad</label>
+							<div>
+								<input
+									type="number"
+									name="quantity"
+									id="Quantity-{{ section.id }}"
+									value="1"
+									min="1"
+									class="input-quantity">
+							</div>
+						</div>
+
+						{%- when 'description' -%}
+							<div>
+								<p>{{ product.description }}</p>
+							</div>
+
+						{%- when 'checkout_buttons' -%}
+							<div>
+								<button type="submit" name="add" class="btn-primary"
+									{%- if selected_variant.available == false -%}
+										disabled
+									{%- endif -%}
+								>
+									<!-- Si la variante seleccionada esta disponible -->
+									{%- if selected_variant.available == false -%}
+										No disponible
+									{%- else -%}
+										Añadir al carrito
+									{%- endif -%}
+								</button>
+							</div>
+					{%- endcase -%}
+
+			{%- endfor -%}
+		{% endform %}
+	</div>
+</div>
+
+
+<script>
+	class VariantSelector extends HTMLElement {
+		constructor() {
+			super()
+			this.addEventListener('change', this.onVariantChange)
+		}
+
+		onVariantChange() {
+			this.getSelectedOptions()
+			this.getSelectedVariant()
+
+			if (this.currentVariant) {
+				this.updateURL()
+				this.updateFormID()
+				this.updatePrice()
+			}
+		}
+		// Capturar los valores selecionados de la variante
+		getSelectedOptions() {
+			this.options = Array.from(this.querySelectorAll('select'), select => select.value)
+			console.log(this.options);
+		}
+
+		getVariantJSON() {
+			this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"]').textContent)
+			return this.variantData
+		}
+
+		// Obtener la variante seleccionada
+		getSelectedVariant() {
+			this.currentVariant = this.getVariantJSON().find(
+				variant => {
+					const findings = !variant.options.map(
+						(option, index) => {
+							return this.options[index] === option
+						}
+					).includes(false)
+
+					if (findings) return variant
+				}
+			)
+			console.log('CurrentVariant', this.currentVariant);
+		}
+		// Actualiza la url
+		updateURL() {
+			if (!this.currentVariant) return
+
+			window.history.replaceState({}, '', `${this.dataset.url}?variant=${this.currentVariant.id}` )
+		}
+		// Actualiza el id del formulario
+		updateFormID() {
+			const form_input = document.getElementById('product-form').querySelector('input[name="id"]')
+			form_input.value = this.currentVariant.id
+		}
+		// Actualiza el precio
+		updatePrice() {
+			fetch(`${this.dataset.url}?variant=${this.currentVariant.id}&section_id=${this.dataset.section}`)
+				.then((response) => response.text())
+				.then((responseText) => {
+					const id = `price-${this.dataset.section}`
+					const html = new DOMParser().parseFromString(responseText, 'text/html')
+					const oldPrice = document.getElementById(id)
+					const newPrice = html.getElementById(id)
+
+					if (oldPrice && newPrice)
+						oldPrice.innerHTML = newPrice.innerHTML
+				})
+
+		}
+	}
+
+		customElements.define("variant-selector", VariantSelector)
+</script>
+
+{% schema %}
+{
+	"name": "Producto ss",
+	"blocks": [
+		{
+			"type": "vendor",
+			"name": "Venedor",
+			"limit": 1
+		},
+		{
+			"type": "title",
+			"name": "Title",
+			"limit": 1
+		},
+		{
+			"type": "price",
+			"name": "Precio",
+			"limit": 1
+		},
+		{
+			"type": "variant_selector",
+			"name": "Variant Selector",
+			"limit": 1
+		},
+		{
+			"type": "quantity",
+			"name": "Quantity",
+			"limit": 1
+		},
+		{
+			"type": "description",
+			"name": "Description",
+			"limit": 1
+		},
+		{
+			"type": "checkout_buttons",
+			"name": "Checkout Buttons",
+			"limit": 1
+		}
+	]
+}
+{% endschema %}

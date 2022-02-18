@@ -1,0 +1,21 @@
+{%- liquid
+  assign sort_by = results.sort_by | default: results.default_sort_by
+  assign total_active_values = 0
+  if results.url
+    assign results_url = results.url
+  else
+    assign terms = results.terms | escape
+    assign results_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
+  endif
+-%}
+
+
+
+</h1>Sort by: {{ sort_by }}</h1>
+<p>URL: {{ results_url }}</p>
+<p>terms: {{ terms }}</p>
+</p>product_vendor: {{ product_vendor | link_to_vendor }}</p>
+
+<p>{{ results.tags }}</p>
+
+{% render 'breadcrumbs' %}
