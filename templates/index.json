@@ -1,22 +1,65 @@
 {
-	"name": "Hero image",
-	"wrapper": "section.hero-image",
-	"sections": {
-		"hero": {
-			"type": "template-hero"
-		},
-		"popular-categories": {
-			"type": "template-popular-categorie"
-		},
-		"feature-collection": {
-			"type": "feature-collection",
-			"settings": {
-				"featured_collection": "all"
-			}
-		},
-		"carousel-products": {
-			"type": "template-carousel-products"
-		}
-	},
-	"order": ["hero", "popular-categories", "feature-collection", "carousel-products"]
+  "wrapper": "section.hero-image",
+  "sections": {
+    "hero": {
+      "type": "template-hero",
+      "settings": {
+        "hero_image_movil": "shopify:\/\/shop_images\/img_hero_2x_2.png",
+        "hero_image_desktop": "shopify:\/\/shop_images\/img_hero.png",
+        "text_button": "Comprar Ahora",
+        "url_poduct": "",
+        "show_button": false
+      }
+    },
+    "popular-categories": {
+      "type": "template-popular-categorie",
+      "settings": {
+        "product_image": "shopify:\/\/shop_images\/Enmascarar_grupo_63-1_2x_b16d6cf9-2f7f-4b74-9352-b0a061ac7953.png",
+        "title": "Titulo",
+        "description": "Descripcion del producto",
+        "button_1_text": "Categoria 1",
+        "url_collection_1": "",
+        "button_2_text": "Categoria 2",
+        "show_button_2": true,
+        "url_collection_2": "",
+        "flex_alignment": false,
+        "popular_collection": "adidas"
+      }
+    },
+    "feature-collection": {
+      "type": "feature-collection",
+      "settings": {
+        "title": "Coleccion destacada",
+        "featured_collection": "all"
+      }
+    },
+    "carousel-products": {
+      "type": "template-carousel-products",
+      "settings": {
+        "title_product": ""
+      }
+    },
+    "1645200864df70c3ed": {
+      "type": "template-popular-categorie",
+      "settings": {
+        "product_image": "shopify:\/\/shop_images\/Enmascarar_grupo_63.png",
+        "title": "Titulo",
+        "description": "Descripcion del producto",
+        "button_1_text": "Categoria 1",
+        "url_collection_1": "",
+        "button_2_text": "Categoria 2",
+        "show_button_2": false,
+        "url_collection_2": "",
+        "flex_alignment": true,
+        "popular_collection": "tenis-reebok"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "popular-categories",
+    "feature-collection",
+    "carousel-products",
+    "1645200864df70c3ed"
+  ]
 }
